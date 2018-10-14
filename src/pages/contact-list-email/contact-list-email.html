@@ -1,0 +1,29 @@
+<ion-header color="primary">
+
+  <ion-navbar color="primary">
+    <ion-title>Pick Contacts</ion-title>
+    <ion-buttons *ngIf="saveBtnShow" end (click)="done()">
+      <button ion-button icon-right color="royal">
+        {{okText}}
+        <ion-icon [name]="okIcon"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  <ion-toolbar no-border-top no-border>
+    <ion-searchbar [(ngModel)]="search"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list [virtualScroll]="filteredContacts" [approxItemHeight]="'50px'">
+
+    <button ion-item *virtualItem="let contact" (click)="toggleStatus(contact)">
+      <ion-icon item-start name="{{isSelected(contact)?'checkmark':''}}"></ion-icon>
+      <h2>{{contact.name}}</h2>
+      <h3>{{contact.email || contact.phone}}</h3>
+    </button>
+
+  </ion-list>
+
+</ion-content>

@@ -1,0 +1,17 @@
+<ion-content no-padding>
+  <button class="close" clear color="danger" icon-only (click)="cancel()">
+    <ion-icon name="close"></ion-icon>
+  </button>
+  <button *ngIf="base64String" class="done" clear color="secondary" icon-only (click)="done()">
+    <ion-icon name="checkmark"></ion-icon>
+  </button>
+  <input type="file" id="image-picker" accept="image/jpeg" (change)="readFile($event)" #fileInput/>
+  <div [ngClass]="{'filled':!!base64String,'image-wrapper':true}"
+       [ngStyle]="{backgroundImage:'url('+base64String+')'}" (click)="chooseFile()">
+    <div>
+      <ion-icon name="ios-folder-outline"></ion-icon>
+      {{base64String ? "Change File" : "Choose File"}}
+    </div>
+  </div>
+  <ion-note *ngIf="size">Image should be less than {{size}} MB in size</ion-note>
+</ion-content>

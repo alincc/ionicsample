@@ -1,0 +1,61 @@
+<div class="calendar-container">
+  <div class="calendar-controls">
+    <ion-row>
+      <ion-col>
+        <button type="button" role="button" ion-button clear color="primary" icon-only item-left
+                (click)="prevYear()" [disabled]="!canGoPrevYear()">
+          <ion-icon name="arrow-dropleft"></ion-icon>
+        </button>
+        <span>{{currentMonth.date.getFullYear()}}</span>
+        <button type="button" role="button" ion-button clear color="primary" icon-only item-right
+                (click)="nextYear()" [disabled]="!canGoNextYear()">
+          <ion-icon name="arrow-dropright"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button type="button" role="button" ion-button clear color="primary" icon-only item-left
+                (click)="prevMonth()" [disabled]="!canGoPrevMonth()">
+          <ion-icon name="arrow-dropleft"></ion-icon>
+        </button>
+        <span>{{currentMonth.name}}</span>
+        <button type="button" role="button" ion-button clear color="primary" icon-only item-right
+                (click)="nextMonth()" [disabled]="!canGoNextMonth()">
+          <ion-icon name="arrow-dropright"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </div>
+  <div>
+    <table class="calendar-table">
+      <thead>
+      <tr class="calendar-table-header">
+        <th class="calendar-day-name">Sun</th>
+        <th class="calendar-day-name">Mon</th>
+        <th class="calendar-day-name">Tue</th>
+        <th class="calendar-day-name">Wed</th>
+        <th class="calendar-day-name">Thu</th>
+        <th class="calendar-day-name">Fri</th>
+        <th class="calendar-day-name">Sat</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let week of currentMonth.weeks" class="calendar-week-row">
+        <td *ngFor="let nmd of week.monthDaysPrePaddings" class="calendar-week-day pre-padding">
+          {{cellMainContent(nmd.date, false)}}
+        </td>
+        <td *ngFor="let day of week.monthDays"
+            ngClass="{{'calendar-week-day '+(day.isSame(_selected)?'selected':'not-selected')}}">
+          <button type="button" role="button" small ion-button full clear color="{{day.isSame(_selected)?'primary':''}}"
+                  (click)="select(day.date)"
+                  [disabled]="!canSelect(day.date)">
+            {{cellMainContent(day.date, true)}}
+          </button>
+        </td>
+        <td *ngFor="let nmd of week.monthDaysPostPaddings" class="calendar-week-day post-padding">
+          {{cellMainContent(nmd.date, false)}}
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<ion-item-sliding class="notification-unit" *ngIf="notification && !notification.readAt"
+                  (click)="applyOpenAction($event)"
+                  (ionDrag)="swiping($event)">
+  <ion-item class="notification">
+    <!--<ion-icon item-left name="{{notification.icon}}"></ion-icon>-->
+    <h2 *ngIf="!hideTitle">{{notification.title}}</h2>
+    <h3>{{notification.message}}</h3>
+    <p class="date">{{notification.createdAt | amTimeAgo}}</p>
+  </ion-item>
+  <ion-item-options side="left" class="notification-actions notification-actions-left"
+                    (ionSwipe)="applyDismissAction($event)">
+    <button *ngFor="let action of leftActions" ion-button color="{{action.color}}"
+            (click)="applyCustomAction($event, action);">
+      <ion-icon name="{{action.icon}}"></ion-icon>
+      {{action.text}}
+    </button>
+  </ion-item-options>
+  <ion-item-options side="right" class="notification-actions notification-actions-right" *ngIf="hasMainAction"
+                    (ionSwipe)="applyMainAction($event)">
+    <button *ngFor="let action of rightActions" ion-button color="{{action.color}}"
+            (click)="applyCustomAction($event, action);">
+      <ion-icon name="{{action.icon}}"></ion-icon>
+      {{action.text}}
+    </button>
+  </ion-item-options>
+</ion-item-sliding>

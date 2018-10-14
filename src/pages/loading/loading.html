@@ -1,0 +1,31 @@
+<ion-header class="transparent" color="transparent">
+  <ion-navbar color="transparent">
+    <ion-title></ion-title>
+  </ion-navbar>
+</ion-header>
+
+<div class="outer-box {{loaded?'loaded':''}}">
+
+  <div class="flex logo-box">
+    <h1 class="logo {{loaded?'':'animated'}}" id="main-logo">pidge</h1>
+    <div class="aligner"></div>
+  </div>
+
+  <div class="content-box">
+    <div class="flex content-flex" *ngIf="loaded">
+
+      <div class="title">
+        <h1 id="substitue-logo">Pidge</h1>
+        <h2>Organised Sports Made Simple</h2>
+      </div>
+
+      <div class="buttons">
+        <button ion-button (click)="displayLogin()" round full class="login-btn" color="secondary">Log in</button>
+        <button ion-button (click)="displayRegister()" round full class="register-btn" color="danger">Register
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+</div>

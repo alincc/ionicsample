@@ -1,0 +1,47 @@
+<ion-content padding>
+
+  <button ion-button clear icon-only color="extra_light" class="exit-btn" (click)="backToTeam()">
+  <ion-icon name="arrow-back"></ion-icon><h4>BACK</h4>
+  </button>
+
+  <div class="container">
+
+    <div class="left"><h2>Welcome to OUSF Freshers' day</h2><h3>Powered by</h3><h1>pidge</h1></div>
+
+    <div class="right">
+
+      <ion-spinner *ngIf="!team"></ion-spinner>
+
+        <ng-container *ngIf="team">
+          <h1>{{team.title}}</h1>
+          <h2>{{team.type}}, {{team.description}}</h2>
+          <ion-avatar *ngIf="team.image"><img [src]="team.image"/></ion-avatar>
+
+          <h3>{{team.sport}}</h3>
+
+
+          <form (submit)="invite()" #inviteForm="ngForm">
+            <ion-item>
+              <ion-label>Name</ion-label>
+              <ion-input disable-keyboard-auto-words [(ngModel)]="name" type="text" name="name" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Email</ion-label>
+              <ion-input disable-keyboard-auto-words [(ngModel)]="email" type="email" name="email" required></ion-input>
+            </ion-item>
+            <button ion-button round class="submit-btn" full color="primary" type="submit" [disabled]="inviteForm.form.invalid" style="margin-top: 100px;">
+              Invite
+            </button>
+          </form>
+        </ng-container>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+</ion-content>

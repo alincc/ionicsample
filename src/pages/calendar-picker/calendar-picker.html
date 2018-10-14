@@ -1,0 +1,23 @@
+<ion-content padding text-center>
+
+  <br/>
+  <h2 text-center>Pick up a date</h2>
+  <ion-row>
+    <ion-col>
+      <calendar [min]="min" [max]="max" [current]="current" [selected]="selected" ([ngModel])="selected"
+                (onSelect)="setDate($event)" #calendar></calendar>
+    </ion-col>
+    <ion-col>
+      <h3 text-center>{{calendar.selected.toDateString()}} <small class="muted light">(UTC{{timezone}})</small></h3>
+      <button ion-button full color="primary" icon-left (click)="finish()">
+        <ion-icon name="checkmark"></ion-icon>
+        Select
+      </button>
+      <button ion-button full clear color="primary" icon-left (click)="cancel()">
+        <ion-icon name="close"></ion-icon>
+        Cancel
+      </button>
+    </ion-col>
+  </ion-row>
+
+</ion-content>

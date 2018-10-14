@@ -1,0 +1,40 @@
+calendar {
+  padding: 0 0 0 0;
+  .calendar-container {
+    padding: 0 0 0 0;
+    .calendar-controls {
+      text-align: center;
+      padding: 0 0 0 0;
+      ion-row {
+        padding: 0 0 0 0;
+        ion-col {
+          padding: 0 0 0 0;
+          span {
+            display: inline-block;
+            padding: 5px 0;
+          }
+        }
+      }
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      tr {
+        th, td {
+          border: 1px solid color($colors, light);
+          padding: 0 0 0 0;
+        }
+        th {
+          background-color: color($colors, primary);
+          color: color($colors, light);
+          padding: 6px 0;
+        }
+        td {
+          &.selected {
+            background-color: color($colors, primary_alternate);
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+<button ion-item (click)="toggle(group)" [class.collapsed]="!isExpanded(group)"
+        class="sliding-list-handler notification-group">
+  <ion-icon name="ios-arrow-down-outline" item-end class="handler-arrow"></ion-icon>
+  <ion-badge float-end margin-left color="primary">{{group.values.length}}</ion-badge>
+  {{group.idDisplay}}
+</button>
+<ion-item [class.collapsed]="!isExpanded(group)" class="sliding-list members-list"
+          [style.maxHeight.px]="group.values.length * 150 + 50">
+  <ion-list no-lines *ngIf="group.values.length<=1 || group.subgroups.length<=1 || !grouped" lines>
+    <ng-container *ngFor="let entry of group.values">
+      <highlight-entry *ngIf="!entry.isRead" [notification]="entryViewModel(entry)"
+                       [hide-title]="group.values.length<= 1 || group.subgroups.length<=1"></highlight-entry>
+    </ng-container>
+  </ion-list>
+  <ng-container *ngIf="group.values.length>1 && group.subgroups.length>1 && grouped">
+    <highlight-group *ngFor="let subgroup of group.subgroups" [group]="subgroup" [isExpanded]="isExpanded"
+                     [toggle]="toggle" [entryViewModel]="entryViewModel" [grouped]="grouped"></highlight-group>
+  </ng-container>
+</ion-item>

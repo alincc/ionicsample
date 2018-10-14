@@ -1,0 +1,67 @@
+<ion-header class="transparent" color="transparent">
+  <ion-navbar color="transparent">
+    <ion-title>Register</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="public-page register-content" padding no-margin>
+
+  <div class="register-flex">
+
+    <div class="register-box">
+
+      <form (ngSubmit)="register()" #registerForm="ngForm" style="margin-top: 100px;">
+        <ion-item>
+          <ion-label floating>Name</ion-label>
+          <ion-input disable-keyboard-auto-words [(ngModel)]="credentials.name" type="text" id="name" #name="ngModel"
+                     name="name"
+                     required></ion-input>
+        </ion-item>
+        <ion-note color="danger" *ngIf="name.touched && name.invalid">Please enter a valid name.</ion-note>
+        <ion-item>
+          <ion-label floating>Email</ion-label>
+          <ion-input disable-keyboard-auto-words="" [(ngModel)]="credentials.email" type="email" id="email"
+                     #email="ngModel" name="email"
+                     required></ion-input>
+        </ion-item>
+        <ion-note color="danger" *ngIf="email.touched && email.invalid">Valid email address is required.</ion-note>
+        <!--<ion-row no-padding no-margin>-->
+        <!--<ion-col no-padding padding-right>-->
+        <ion-item class="no-space-left">
+          <ion-label floating>Password</ion-label>
+          <ion-input type="password" #password="ngModel" id="password" [(ngModel)]="credentials.password"
+                     name="password"
+                     required></ion-input>
+        </ion-item>
+        <ion-note color="danger" *ngIf="password.touched && password.invalid && password.errors.minlength">
+          6 characters at least
+        </ion-note>
+        <!--</ion-col>-->
+        <!--<ion-col no-padding padding-left>
+          <ion-item class="no-space-left">
+            <ion-label floating>Confirm Password</ion-label>
+            <ion-input [(ngModel)]="credentials.confirmPassword" type="password" id="confirm"
+                       name="confirm" #confirm="ngModel" required></ion-input>
+          </ion-item>
+          <ion-note color="danger" *ngIf="confirm.touched && confirm.invalid && confirm.errors.confirm">
+            {{confirm.errors.confirm}}
+          </ion-note>
+        </ion-col>-->
+        <!--</ion-row>-->
+        <button ion-button round class="submit-btn" full type="submit" [disabled]="registerForm.form.invalid"
+                style="margin-top: 100px;">
+          Register
+        </button>
+      </form>
+    </div>
+
+    <div class="login-box">
+      <button ion-button type="button" role="button" class="register-btn" block clear
+              (click)="loginToAccount()">
+        Already registered? Login
+      </button>
+    </div>
+
+  </div>
+
+</ion-content>

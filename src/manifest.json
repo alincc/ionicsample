@@ -1,0 +1,13 @@
+{
+  "name": "Pidge",
+  "short_name": "Pidge",
+  "start_url": "index.html",
+  "display": "standalone",
+  "icons": [{
+    "src": "assets/logo.png",
+    "sizes": "219x219",
+    "type": "image/png"
+  }],
+  "background_color": "#e7ebef",
+  "theme_color": "#002654"
+}

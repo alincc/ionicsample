@@ -1,0 +1,155 @@
+page-loading {
+
+  @include public-bg();
+
+  .outer-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    width: 100vw;
+    height: 100vh;
+
+    .flex {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-content: center;
+      align-items: stretch;
+      > * {
+        vertical-align: middle;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        align-items: center;
+        align-self: center;
+      }
+    }
+
+    h1 {
+      font-size: 5em;
+      @media screen and (min-width: 700px){
+        font-size: 7em;
+      }
+      margin: 0 0 0 0;
+      padding: 0 0 0 0;
+      font-family: Comfortaa;
+      text-align: center;
+    }
+
+    .logo-box {
+      > * {
+        transition: flex 1s;
+      }
+      > .logo {
+        flex: 1;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0);
+        &.animated {
+          margin: 0 0 0 0 !important;
+          background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(2, 38, 78, 0), rgba(2, 38, 78, 0), rgba(2, 38, 78, 0), rgba(2, 38, 78, 0), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1));
+
+          @mixin single-transition($property:all, $speed:300ms, $ease:ease-out) {
+            transition: $property $speed $ease;
+          }
+          background-size: 3200px 200px;
+          -webkit-background-clip: text;
+          -webkit-animation: animate-logo;
+          -webkit-animation-delay: 0s;
+          -webkit-animation-duration: 3s;
+          -webkit-animation-timing-function: linear;
+          -webkit-animation-iteration-count: infinite;
+          -webkit-animation-fill-mode: forwards;
+
+          @include single-transition($property: font-size, $speed: 300ms, $ease: ease-in-out);
+
+          @-webkit-keyframes animate-logo {
+            0% {
+              background-position: 0 3200px;
+            }
+            100% {
+              background-position: 3200px 0;
+            }
+          }
+        }
+      }
+      > .aligner {
+        flex: 0;
+      }
+    }
+
+    .content-box {
+      opacity: 0;
+      transition: all 1s;
+      transition-delay: 1s;
+
+      > .content-flex {
+        > .title {
+          h1 {
+            opacity: 0;
+          }
+          h2 {
+            font-weight: 400;
+            text-align: center;
+            font-size: 1.2em;
+            @media screen and (min-width: 700px){
+              font-size: 1.5em;
+            }
+            color: white;
+          }
+        }
+        > .buttons {
+          width: 100%;
+          > button {
+            display: block;
+            @media screen and (max-width: 424px) {
+              width: 90%;
+            }
+            @media screen and (min-width: 425px) {
+              width: 325px;
+            }
+            margin: 0 auto;
+
+            &.login-btn {
+              background-color: #E7F4F3;
+              font-weight: 700;
+              color: color($colors, primary);
+              margin-bottom: 15px;
+            }
+
+            &.register-btn {
+              background-color: color($colors, secondary);
+              font-weight: 700;
+              color: white;
+            }
+          }
+        }
+      }
+    }
+
+    &.loaded {
+
+      .logo-box {
+        > .logo {
+          color: white;
+          flex: 2;
+        }
+        > .aligner {
+          flex: 3;
+        }
+      }
+      .content-box {
+        opacity: 1;
+      }
+
+    }
+  }
+}

@@ -1,0 +1,89 @@
+<!--
+  Generated template for the InvitationListPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header color="primary">
+
+  <ion-navbar color="primary">
+    <ion-title>invitation-list</ion-title>
+    <ion-buttons  end (click)="close()">
+      <button ion-button icon-right color="royal">
+        
+        <ion-icon name="close-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  <ion-toolbar id="group-tabs">
+    <ion-row no-padding>
+      
+      <ion-col>
+        <button ion-button clear small [class]="displayedGroup=='single'?'active':''">
+          Events
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+    <div class="invitations" >
+        <div class="invitation-group">
+  <ng-container *ngFor="let eventInvitation of singleEvent; trackBy: id">
+      <div class="invitation-block invitation-{{lowercase}}">
+ 
+    <ion-row>
+
+        <ion-col class="invitation-event-date-and-time" col-2 col-lg-1>
+          <div class="vertical-flex">
+            <div class="flex-top" align-self-center justify-content-around>
+              <div class="invitation-event-date">
+                <span class="invitation-event-day">{{date("d",eventInvitation.date)}}</span>
+                <span class="invitation-event-day-name">{{date("D",eventInvitation.date)}}</span>
+              </div>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col class="invitation" col-10 col-lg-11>
+          <ion-list no-lines>
+            <ion-item-sliding >
+              <ion-item >
+                <ion-icon no-padding no-margin name="checkmark-circle" item-end (click)="joinEvent(eventInvitation)"></ion-icon>
+                <div class="vertical-flex">
+                  <div class="flex-top">
+                    <div class="horizontal-flex">
+                      <div class="flex-left">
+                        <h2 class="invitation-event-title">{{eventInvitation.title}}</h2>
+                      </div>
+                      <!--<div class="flex-right">-->
+                      <!--</div>-->
+                    </div>
+                  </div>
+                  <div class="flex-bottom">
+                    <div class="horizontal-flex">
+                      <div class="flex-left">
+                        <div class="invitation-event-team-name">{{eventInvitation.type}}</div>
+                        <div class="invitation-event-time">
+                          <ion-icon name="md-time"></ion-icon>
+                          <span class="invitation-event-time-hours">{{date("H",eventInvitation.date)}}</span>:<span
+                          class="invitation-event-time-minutes">{{date("i",eventInvitation.date)}}</span>
+                        </div>
+                       
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+              </ion-item>
+            </ion-item-sliding>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+        </div>
+        </ng-container>
+     </div>
+     </div>
+
+</ion-content>

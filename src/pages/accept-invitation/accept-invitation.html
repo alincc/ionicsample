@@ -1,0 +1,29 @@
+<ion-header class="transparent" color="transparent">
+  <ion-navbar color="transparent">
+    <ion-title>Invitation</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="register-content" padding no-margin>
+
+  <div class="register-flex">
+
+    <div class="register-box" align-center text-center center>
+
+      <ion-spinner *ngIf="!invitation"></ion-spinner>
+
+      <ng-container *ngIf="invitation">
+        <div>
+          From: {{invitation.affiliate.title}}
+        </div>
+
+        <button ion-button round class="submit-btn" full type="button" (click)="accept()" style="margin-top: 100px;">
+          Accept
+        </button>
+      </ng-container>
+
+    </div>
+
+  </div>
+
+</ion-content>

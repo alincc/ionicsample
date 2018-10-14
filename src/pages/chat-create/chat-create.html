@@ -1,0 +1,100 @@
+<ion-header color="white">
+
+  <ion-navbar color="primary">
+    <ion-title>{{updatingModel ? "Edit '" + updatingModel.title + "'": "Create New Team"}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <form (ngSubmit)="saveTeam($event)" #chatForm="ngForm">
+
+    <div class="photo-box" (click)="changePhoto()">
+      <img [src]="model.image || '/assets/images/badge.png'"/>
+      <ion-note>
+        <small>{{model.image ? "Change" : "Add"}} Team Logo</small>
+      </ion-note>
+    </div>
+
+    <ion-list class="form-controls">
+
+      <ion-item>
+        <ion-label floating>Name</ion-label>
+        <ion-input disable-keyboard-auto-words type="text" name="title" required [(ngModel)]="model.title" #title="ngModel"></ion-input>
+      </ion-item>
+      <!-- <ion-item color="danger" *ngIf="title.dirty && title.invalid">
+        Please enter a valid name.
+      </ion-item> -->
+
+      <ion-item>
+        <ion-label floating>Team Slogan</ion-label>
+        <ion-input disable-keyboard-auto-words type="text" name="description" required [(ngModel)]="model.description"
+                   #description="ngModel"></ion-input>
+      </ion-item>
+      <!-- <ion-item color="danger" *ngIf="description.touched && description.invalid">
+        Please enter a valid description.
+      </ion-item> -->
+
+      <ion-item>
+        <ion-label floating>Sport</ion-label>
+        <ion-select name="sport" required [(ngModel)]="sportList" #listSport="ngModel">
+          <ion-option *ngFor="let sport of sports">{{sport}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <!-- <ion-item color="danger" *ngIf="listSport.touched && listSport.invalid">
+        Choose a sport
+      </ion-item> -->
+      <ng-container *ngIf="sportList==='Other'">
+        <ion-item>
+          <ion-label floating>Type the sport</ion-label>
+          <ion-input disable-keyboard-auto-words type="text" name="sportOther" required [(ngModel)]="sportOther" #otherSport="ngModel"></ion-input>
+        </ion-item>
+        <!-- <ion-item color="danger" *ngIf="otherSport.touched && otherSport.invalid">
+          Please enter a sport or choose it from the list
+        </ion-item> -->
+      </ng-container>
+
+      <ion-item>
+        <ion-label floating>Category</ion-label>
+        <ion-select name="type" required [(ngModel)]="model.type" #type="ngModel" readonly>
+          <ion-option>Team</ion-option>
+          <ion-option *ngIf="model.uqid && model.type!=='Team'">{{model.type}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item color="danger" *ngIf="type.touched && type.invalid">
+        Choose a type
+      </ion-item>
+
+      <!--<ion-item>
+        <ion-label floating>Start At</ion-label>
+        <ion-datetime [min]="minStart" [max]="maxStart" name="startAt" [(ngModel)]="startAt"></ion-datetime>
+      </ion-item>
+      <ion-item color="danger" *ngIf="startAt.touched && startAt.invalid">Please enter a valid date.</ion-item>
+
+      <ion-item>
+        <ion-label floating>End At</ion-label>
+        <ion-datetime [min]="minEnd" [max]="maxEnd" name="endAt" [(ngModel)]="endAt"></ion-datetime>
+      </ion-item>
+      <ion-item color="danger" *ngIf="endAt.touched && endAt.invalid">Please enter a valid date.</ion-item>-->
+
+      <ion-item style="height: 0 !important; display: none;"></ion-item>
+
+    </ion-list>
+
+    <br/>
+
+    <button ion-button round role="button" type="button" full color="primary" icon-left
+            [disabled]="!chatForm.form.valid" (click)="saveTeam($event)">
+
+      Save
+    </button>
+
+  </form>
+
+  <!--<button ion-button role="button" type="button" clear full color="primart" icon-left (click)="navCtrl.pop()">
+    <ion-icon name="arrow-back"></ion-icon>
+    Cancel
+  </button>-->
+
+</ion-content>

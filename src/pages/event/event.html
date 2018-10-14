@@ -1,0 +1,164 @@
+<ion-header>
+
+  <ion-navbar color="{{invitation ? statusColor(invitation?.status) : 'white'}}">
+    <ion-buttons *ngIf="areYouAdmin && !event.isPast" end right>
+      <button ion-button (click)="editEvent()" icon-only>
+        <ion-icon name="create"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title class="with-subtitle">
+      {{event.title}}
+    </ion-title>
+  </ion-navbar>
+
+  <ion-navbar color="extra_light">
+    <div class="user-interaction-dev" *ngIf="invitation" [class.disabled]="!invitation.canMemberAnswer(true)">
+      <div class="horizontal-flex">
+        <div class="flex-left">
+          <span class="question">Are you going?</span>
+        </div>
+        <div class="flex-right">
+          <button ion-button icon-only color="secondary" round
+                  [disabled]="!invitation.canMemberAccept() || invitationsUnderUpdate[invitation.id]"
+                  [outline]="['Pending'].indexOf(invitation.status)===-1"
+                  (click)="acceptEventInvitation($event)" class="confirm-btn">
+            <ion-icon *ngIf="invitationsUnderUpdate[invitation.id]!=='accept'" name="checkmark"></ion-icon>
+            <ion-spinner *ngIf="invitationsUnderUpdate[invitation.id]==='accept'"></ion-spinner>
+          </button>
+          <button ion-button icon-only color="danger_dark" round
+                  [disabled]="!invitation.canMemberReject() || invitationsUnderUpdate[invitation.id]"
+                  [outline]="['Rejected'].indexOf(invitation.status)===-1"
+                  (click)="rejectEventInvitation($event)" class="cancel-btn">
+            <ion-icon *ngIf="invitationsUnderUpdate[invitation.id]!=='reject'" name="close"></ion-icon>
+            <ion-spinner *ngIf="invitationsUnderUpdate[invitation.id]==='reject'"></ion-spinner>
+          </button>
+        </div>
+      </div>
+    </div>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content no-padding>
+  <ion-refresher (ionRefresh)="refreshEventInfo($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="line-separator"></div>
+
+  <h2 class="section-title"><span>Event Info</span></h2>
+
+  <ion-list no-lines class="event-info">
+
+    <ion-item class="event-time">
+      <ion-icon item-start name="md-time"></ion-icon>
+      {{formatDate("d M")}} {{formatDate("Y")}} @ {{formatDate("H:i")}}
+      {{event.isPast ? "(Gone)":""}}
+    </ion-item>
+
+    <ion-item class="event-team">
+      <ion-icon item-start name="md-people"></ion-icon>
+      <button item-end ion-button clear (click)="openChat()">Open</button>
+      {{chat?.title}}
+    </ion-item>
+
+    <ion-item class="event-regular" *ngIf="event?.regularEvent">
+      <ion-icon item-start name="md-repeat"></ion-icon>
+      <button item-end *ngIf="areYouAdmin && !event.isPast" ion-button clear (click)="editRegularEvent()">Edit</button>
+
+      <ng-container [ngSwitch]="event?.regularEvent?.intervalUnit">
+        <ng-container *ngSwitchCase="'Day'">
+          Daily
+        </ng-container>
+        <ng-container *ngSwitchCase="'Month'">
+          Monthly
+        </ng-container>
+        <ng-container *ngSwitchDefault>
+          <!--Weekly is default to comply with the old ERD-->
+          Weekly
+        </ng-container>
+      </ng-container>
+    </ion-item>
+
+    <ion-item class="event-note" *ngIf="event?.address">
+      <ion-icon item-start name="ios-pin-outline"></ion-icon>
+      {{event.address}}
+    </ion-item>
+
+    <ion-item class="event-note" *ngIf="event?.type">
+      <ion-icon item-start name="ios-basketball-outline"></ion-icon>
+      <ng-container *ngIf="chat?.sport">{{chat?.sport}},</ng-container>
+      {{event?.type}}
+    </ion-item>
+
+    <ion-item class="event-note" *ngIf="event?.note">
+      <ion-icon item-start name="md-paper"></ion-icon>
+      {{event.note}}
+    </ion-item>
+
+    <button ion-item color="danger" clear (click)="removeEvent(event)" *ngIf="you?.isAdmin && !event?.isPast">
+      <ion-icon item-start name="ios-trash"></ion-icon>
+      Remove Event
+    </button>
+
+  </ion-list>
+
+  <h2 class="section-title"><span>Team Members</span></h2>
+
+  <div class="members-section" padding>
+    <ion-list class="members-section-list" no-lines>
+      <ng-container *ngFor="let eventInvitationsStatus of groupedInvitations.keys">
+        <ng-container
+          *ngIf="groupedInvitations[eventInvitationsStatus] && groupedInvitations[eventInvitationsStatus]?.length">
+          <ion-list-header>
+            <ion-title style="padding-bottom: 20px;">{{eventInvitationsStatus}}</ion-title>
+          </ion-list-header>
+          <ion-item class="member" *ngFor="let eventInvitation of groupedInvitations[eventInvitationsStatus]"
+                    text-center>
+            <ion-avatar item-start><img [src]="eventInvitation?.user?.image"/></ion-avatar>
+            <h2>{{eventInvitation?.user?.name}}</h2>
+            <ng-container *ngIf="['Confirmed','Cancelled','Pending'].indexOf(eventInvitation.status)!==-1">
+              <div class="event-invitation-position-block">
+                <ng-container *ngIf="areYouAdmin && eventInvitation?.canAdminAnswer(false)">
+                  <ng-container [ngSwitch]="eventInvitation.status">
+                    <ng-container *ngSwitchCase="'Confirmed'">
+                      <span class="event-invitation-position">{{eventInvitation?.position || "No position set"}}</span>
+                      <button ion-button clear color="dark" (click)="askForPosition(eventInvitation)">
+                        [ {{eventInvitation?.position?"Change":"Set"}} ]
+                      </button>
+                    </ng-container>
+                    <ng-container *ngSwitchDefault>
+                      <button ion-button clear color="dark" (click)="askForPosition(eventInvitation)">
+                        Confirm and Set Position
+                      </button>
+                    </ng-container>
+                  </ng-container>
+                </ng-container>
+                <ng-container *ngIf="!(areYouAdmin && eventInvitation?.canAdminAnswer(false))">
+                  {{eventInvitation?.position || "Position not set"}}
+                </ng-container>
+              </div>
+            </ng-container>
+            <button ion-button icon-only round item-end color="secondary" class="confirm-btn" outline
+                    *ngIf="areYouAdmin && eventInvitation.canAdminAccept()"
+                    [disabled]="invitationsUnderUpdate[eventInvitation?.id]"
+                    (click)="confirmParticipation(eventInvitation)">
+              <ion-icon *ngIf="invitationsUnderUpdate[eventInvitation?.id]!=='confirm'" name="checkmark"></ion-icon>
+              <ion-spinner *ngIf="invitationsUnderUpdate[eventInvitation?.id]==='confirm'"></ion-spinner>
+            </button>
+
+            <button ion-button icon-only round item-end color="danger" class="cancel-btn" outline
+                    *ngIf="areYouAdmin && eventInvitation.canAdminReject()"
+                    [disabled]="invitationsUnderUpdate[eventInvitation?.id]"
+                    (click)="cancelParticipation(eventInvitation)">
+              <ion-icon *ngIf="invitationsUnderUpdate[eventInvitation?.id]!=='cancel'" name="close"></ion-icon>
+              <ion-spinner *ngIf="invitationsUnderUpdate[eventInvitation?.id]==='cancel'"></ion-spinner>
+            </button>
+
+          </ion-item>
+        </ng-container>
+      </ng-container>
+    </ion-list>
+  </div>
+
+</ion-content>

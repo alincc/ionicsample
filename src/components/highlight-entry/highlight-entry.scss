@@ -1,0 +1,15 @@
+highlight-entry {
+
+  ion-item, [ion-item] {
+    background-color: color($colors, primary);
+    color: white;
+    &.item-ios {
+      background-color: color($colors, primary);
+      color: white;
+    }
+    .item-inner {
+      background-color: transparent;
+    }
+  }
+
+}

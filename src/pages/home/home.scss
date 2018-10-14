@@ -1,0 +1,27 @@
+page-home {
+  ion-tabs {
+    .tabbar {
+      height: 50px;
+      .tab-button {
+        ion-icon {
+          font-size: 2em !important;
+          height: 40px !important;
+          width: 40px !important;
+          line-height: 40px !important;
+          text-align: center;
+          display: inline-block;
+          position: relative;
+          margin: 0 0 0 0 !important;
+          padding: 0 0 0 0 !important;
+          &:before {
+            font-size: 30px;
+            margin: 5px 0 !important;
+          }
+        }
+        ion-badge {
+          top: 5px !important;
+        }
+      }
+    }
+  }
+}

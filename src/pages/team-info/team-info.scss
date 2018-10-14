@@ -1,0 +1,278 @@
+page-team-info {
+ .image-bg{
+
+  padding: 0px !important;
+
+  // background-color: transparent !important;
+
+ }
+  .icon-right
+  {
+    float: right;
+  }
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+.header-class
+{
+  // padding-top: 5%;
+}
+  ion-navbar {
+    
+   // padding-top:4% !important;
+    ion-title {
+
+      p.subtitle {
+
+        opacity: 0.5;
+
+      }
+
+      .toolbar-title-ios {
+
+        padding-top: 0px;
+        margin: 0 0 0 0 !important;
+
+        p.subtitle {
+          font-size: 0.7em;
+          opacity: 0.5;
+          font-weight: 300px;
+          margin: 0 0 0 0 !important;
+
+        }
+
+      }
+
+    }
+
+  }
+
+  ion-content {
+    .fixed-content, .scroll-content {
+      margin-top: 60px !important;
+      margin-bottom: 50px !important;
+    }
+  }
+
+  .user-image {
+    height: 100px;
+    background-color: color($colors, primary);
+    text-align: center;
+    display: block;
+    position: relative;
+    margin-bottom: 50px;
+    overflow: visible;
+    padding-top: 25px;
+
+    ion-avatar {
+
+      text-align: center;
+
+      img {
+
+        border-radius: 100%;
+        display: block;
+        margin: 0 auto;
+        background-color: white;
+        padding: 5px;
+        width: 128px;
+        height: 128px;
+
+      }
+
+    }
+  }
+
+  ion-list {
+    > button[ion-item], > ion-item, > [ion-item], > * > button[ion-item], > * > ion-item, > * > [ion-item] {
+      padding-left: 0;
+      + button[ion-item], + ion-item, + [ion-item], + * {
+        margin-top: 15px;
+      }
+
+      ion-label.label.label-ios {
+        padding-left: 15px;
+      }
+
+      ion-icon.handler-arrow.icon.icon-ios.ion-md-arrow-dropdown.item-icon::before {
+        display: none;
+      }
+
+      ion-icon {
+        font-size: 2em !important;
+        width: 35px !important;
+        height: 35px !important;
+        line-height: 35px !important;
+        margin: 0 0 0 0 !important;
+        padding: 0 0 0 0 !important;
+        text-align: center;
+
+      }
+
+      &.leave-team {
+        margin-top: 30px !important;
+        margin-bottom: 30px !important;
+        color: color($colors, danger);
+        text-align: center;
+        ion-icon {
+          display: inline-block;
+          vertical-align: middle;
+          font-size: 25px !important;
+          height: 25px !important;
+          width: 25px !important;
+          line-height: 25px !important;
+          float: none;
+        }
+      }
+    }
+  }
+  .sliding-list { /**** IMPORTANT: NAT IF YOU WILL CHANGE ANYTHING INSIDE THIS, PLEASE LET ME KNOW *****/
+    margin: 0px !important;
+    transition: all 0.3s;
+    min-height: 0 !important;
+    > *, > * > *, > * > * > * {
+      margin: 0 0 0 0 !important;
+      padding: 0 0 0 0 !important;
+    }
+    padding: 16px !important;
+    background-color: color($colors, primary) !important;
+    color: white !important;
+    margin: 0 -16px !important;
+    width: calc(100% + 32px);
+    box-shadow: 0 2px 4px black inset;
+    * {
+      background-color: transparent !important;
+      color: white !important;
+    }
+    ion-list {
+      margin-bottom: 0px;
+    }
+    &.collapsed {
+      max-height: 0px !important;
+      padding: 0 16px !important;
+    }
+  }
+  .sliding-list-handler {
+    > .item-inner {
+      padding-right: 0;
+      background-image: none;
+    }
+    ion-icon.handler-arrow {
+      font-size: 1.25em !important;
+      transition: transform 0.2s;
+      transform: rotateZ(0deg);
+      color: transparentize(color($colors, primary), 0.75);
+    }
+    &.collapsed {
+      ion-icon.handler-arrow {
+        color: color($colors, light);
+        transform: rotateZ(-90deg);
+      }
+    }
+  }
+
+  .public-invitation-page-link {
+    @media screen and (max-width: 767px) {
+      display: none;
+    }
+  }
+
+  .events-list {
+    ion-list {
+      ion-item {
+        margin: 0 !important;
+        padding: 0 !important;
+        font-size: 1em;
+        + ion-item {
+          border-top: 1px solid transparentize(lighten(color($colors, primary), 40), 0.75) !important;
+          padding-top: 7.5px !important;
+          margin-top: 7.5px !important;
+        }
+        > .item-inner {
+          margin: 0 !important;
+          padding: 0 !important;
+          ion-label {
+            margin: 0 !important;
+            padding: 7.5px 0 !important;
+          }
+        }
+        .event-title {
+          font-size: 1.2em;
+          padding: 0 !important;
+          margin: 0 !important;
+          text-align: left;
+        }
+        .event-next {
+          > * {
+            display: inline-block;
+          }
+          h3 {
+            font-size: 1em;
+            opacity: 0.75;
+          }
+        }
+        .repeat-box {
+          opacity: 0.5;
+        }
+        .reversed-horizontal-flex {
+          justify-content: space-between;
+          justify-items: stretch;
+        }
+        .user-interaction-buttons {
+          flex-shrink: 0;
+          flex-grow: 0;
+          button[ion-button][clear] {
+            height: 32px;
+            width: 32px;
+            ion-icon {
+              width: 32px !important;
+              height: 30px !important;
+              line-height: 26px !important;
+              border: 1px solid color($colors, white) !important;
+              border-radius: 100%;
+              &[name=ios-close] {
+                font-size: 2em;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .members-lists {
+
+    ion-list {
+      button[ion-item] {
+        h2 {
+          font-weight: 600 !important;
+          text-align: left;
+        }
+        h3 {
+          opacity: 0.5;
+          text-align: left;
+        }
+      }
+    }
+
+  }
+
+  ion-list {
+    ion-item,[ion-item] {
+      & > .item-inner {
+        padding-right: 0 !important;
+        background-image: none !important;
+      }
+    }
+  }
+
+}
+

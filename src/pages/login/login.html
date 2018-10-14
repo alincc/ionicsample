@@ -1,0 +1,42 @@
+<ion-header class="transparent" color="transparent">
+  <ion-navbar color="transparent">
+    <ion-title>Log in</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content class="public-page login-content" padding no-margin>
+
+  <div class="login-flex">
+
+    <div class="login-box">
+
+      <form (ngSubmit)="login()" #registerForm="ngForm" style="margin-top: 100px;">
+        <ion-item>
+          <ion-label floating>Email</ion-label>
+          <ion-input disable-keyboard-auto-words type="email" [(ngModel)]="credentials.email" name="email" required email></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Password</ion-label>
+          <ion-input type="password" [(ngModel)]="credentials.password" name="password" required
+                     minlength="1"></ion-input>
+        </ion-item>
+        <button ion-button round class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid"
+                style="margin-top: 100px;">
+          Log in
+        </button>
+        <button ion-button type="button" role="button" class="register-btn" block clear (click)="forgotPassword()">
+          Forgot your password?
+        </button>
+      </form>
+
+    </div>
+
+    <div class="register-box">
+      <button ion-button type="button" role="button" class="register-btn" block clear (click)="createAccount()">
+        Create an account
+      </button>
+    </div>
+
+  </div>
+
+
+</ion-content>

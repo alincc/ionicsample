@@ -1,0 +1,50 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>
+      {{chat.title}}
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content no-padding>
+  <div class="user-image">
+    <ion-avatar align-self-center>
+      <img [src]="user.image"/>
+    </ion-avatar>
+  </div>
+
+  <div padding>
+    <div class="user-name"><h1>{{user.name}}</h1></div>
+    <div class="user-role">
+      <h2>{{user?.pivot.type("Member")}}</h2>
+      <button *ngIf="canChangeRole" ion-button clear (click)="changeRole()" icon-only>
+        <ion-icon name="md-create"></ion-icon>
+      </button>
+    </div>
+    <ion-list no-lines no-padding text-center align-center>
+      <ion-item>
+        <h3>Joined the team</h3>
+        <h2>{{user.pivot.createdAt | amTimeAgo}}</h2>
+      </ion-item>
+      <ion-item>
+        <h3>Last seen</h3>
+        <h2>{{user.pivot.checkedAt | amTimeAgo}}</h2>
+      </ion-item>
+      <ion-item *ngIf="user?.pivot?.type()=='Left'">
+        <h3>Left</h3>
+        <h2>{{user.pivot.leftAt | amTimeAgo}}</h2>
+      </ion-item>
+      <button *ngIf="you?.isAdmin && canRemoveFromChat" ion-item full (click)="removeFromChat()" class="remove-user">
+        <ion-icon name="exit"></ion-icon>
+        Remove from Team
+      </button>
+      <button *ngIf="you?.isAdmin && user?.pivot?.leftAt" ion-item full (click)="reinvite()">
+        <ion-icon name="md-add" item-start></ion-icon>
+        Add Member Again
+      </button>
+    </ion-list>
+  </div>
+
+</ion-content>

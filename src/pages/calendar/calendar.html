@@ -1,0 +1,181 @@
+<ion-header color="white">
+
+  <ion-navbar color="white">
+    <ion-title>Events & Invitations</ion-title>
+    <ion-buttons left start>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <!--<ion-buttons right end>-->
+    <!--<button ion-button icon-only (click)="toggleSort()">-->
+    <!--<ion-icon name="{{displayAsGroups?'list':'keypad'}}"></ion-icon>-->
+    <!--</button>-->
+    <!--</ion-buttons>-->
+  </ion-navbar>
+
+  <ion-toolbar id="group-tabs">
+    <ion-row no-padding>
+      <ion-col>
+        <button ion-button clear small [class]="displayedGroup=='past'?'active':''"
+                (click)="displayedGroup='past'">
+          Past
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button clear small [class]="displayedGroup=='coming'?'active':''"
+                (click)="displayedGroup='coming'">
+          Upcoming
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <ion-refresher (ionRefresh)="refreshEvents($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ng-container *ngIf="!(eventsList?.length)" padding>
+    <ion-slides class="empty-guide">
+      <ion-slide>
+        <ion-icon class="big" name="md-calendar"></ion-icon>
+        <h1>No Events!</h1>
+        <h4>There are currently no events</h4>
+      </ion-slide>
+      <ion-slide>
+        <span class="big">?</span>
+        <h1>What to do?</h1>
+        <h4>Don't worry, here are few things to help you get started</h4>
+      </ion-slide>
+      <ion-slide>
+        <span class="big">1</span>
+        <h1>Join a Team!</h1>
+        <h4>If you're already on a team, ask your admin for an invite</h4>
+      </ion-slide>
+      <ion-slide>
+        <span class="big">2</span>
+        <h1>Create a Team!</h1>
+        <h4>If you're a team admin, start by creating a teams and invite your teammates to join!</h4>
+      </ion-slide>
+      <ion-slide>
+        <ion-icon name="md-happy" class="big"></ion-icon>
+        <h1>You are Alright!</h1>
+        <h4>You will see all the events of the teams you are in right here!</h4>
+      </ion-slide>
+    </ion-slides>
+  </ng-container>
+
+  <div class="invitations" *ngIf="eventsList?.length">
+    <div *ngFor="let eventsGroup of displayedEventsGrouped; trackBy: trackEventGroupId"
+         class="invitation-group">
+
+      <div *ngIf="eventsGroup.topLevel" class="invitation-group-header">
+        <span>{{eventsGroup.topLevel}}</span>
+      </div>
+      <div *ngIf="!eventsGroup.topLevel" class="group-separator"></div>
+
+      <ng-container *ngFor="let eventInvitation of eventsGroup.list; trackBy: trackEventId">
+        <div class="invitation-block invitation-{{eventInvitation.status | lowercase}}">
+          <ion-row>
+
+            <ion-col class="invitation-event-date-and-time" col-2 col-lg-1>
+              <div class="vertical-flex">
+                <div class="flex-top" align-self-center justify-content-around>
+                  <div class="invitation-event-date">
+                    <span class="invitation-event-day">{{date("d",eventsGroup.date)}}</span>
+                    <span class="invitation-event-day-name">{{date("D",eventsGroup.date)}}</span>
+                  </div>
+                </div>
+              </div>
+            </ion-col>
+
+            <ion-col class="invitation" col-10 col-lg-11>
+              <ion-list no-lines>
+                <ion-item-sliding (ionDrag)="itemSwiping($event, eventInvitation)">
+                  <ion-item (click)="openEventInvitationPage(eventInvitation)">
+                    <ion-icon no-padding no-margin name="arrow-forward" item-end></ion-icon>
+                    <div class="vertical-flex">
+                      <div class="flex-top">
+                        <div class="horizontal-flex">
+                          <div class="flex-left">
+                            <h2 class="invitation-event-title">{{eventInvitation.event.title}}</h2>
+                          </div>
+                          <!--<div class="flex-right">-->
+                          <!--</div>-->
+                        </div>
+                      </div>
+                      <div class="flex-bottom">
+                        <div class="horizontal-flex">
+                          <div class="flex-left">
+                            <div class="invitation-event-team-name">{{eventInvitation.event.chat.title}}</div>
+                            <div class="invitation-event-time">
+                              <ion-icon name="md-time"></ion-icon>
+                              <span class="invitation-event-time-hours">{{date("H",eventInvitation.event.date)}}</span>:<span
+                              class="invitation-event-time-minutes">{{date("i",eventInvitation.event.date)}}</span>
+                            </div>
+                            <div class="invitation-event-user-interactions-block"
+                                 *ngIf="['Pending','Invitation','Accepted','Rejected'].indexOf(eventInvitation.status)!==-1">
+                              <span>Going?</span>
+                              <button ion-button icon-only color="secondary" round
+                                      [disabled]="!eventInvitation.canMemberAccept() || invitationsUnderUpdate[eventInvitation?.id]"
+                                      [outline]="['Pending'].indexOf(eventInvitation.status)===-1"
+                                      (click)="acceptEventInvitation($event, eventInvitation)">
+                                <ion-icon *ngIf="invitationsUnderUpdate[eventInvitation?.id]!=='accept'"
+                                          name="checkmark"></ion-icon>
+                                <ion-spinner
+                                  *ngIf="invitationsUnderUpdate[eventInvitation?.id]==='accept'"></ion-spinner>
+                              </button>
+                              <button ion-button icon-only color="danger_dark" round
+                                      [disabled]="!eventInvitation.canMemberReject() || invitationsUnderUpdate[eventInvitation?.id]"
+                                      [outline]="['Rejected'].indexOf(eventInvitation.status)===-1"
+                                      (click)="rejectEventInvitation($event, eventInvitation)">
+                                <ion-icon *ngIf="invitationsUnderUpdate[eventInvitation?.id]!=='reject'"
+                                          name="close"></ion-icon>
+                                <ion-spinner
+                                  *ngIf="invitationsUnderUpdate[eventInvitation?.id]==='reject'"></ion-spinner>
+                              </button>
+                            </div>
+                          </div>
+                          <!--<div class="flex-right">-->
+                          <!--</div>-->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="invitation-event-users">
+                      <ng-container *ngFor="let user of eventInvitation.event.invitations, userIndex">
+                        <img src="{{user.user.image}}" alt="{{user.user.name}}">
+                      </ng-container>
+                    </div>
+                  </ion-item>
+                  <ion-item-options side="right" right class="danger" *ngIf="eventInvitation.canMemberReject()"
+                                    (ionSwipe)="rejectEventInvitation($event, eventInvitation)">
+                    <button ion-button color="danger" (click)="rejectEventInvitation($event, eventInvitation)">No
+                    </button>
+                  </ion-item-options>
+                  <ion-item-options side="left" left class="success"
+                                    *ngIf="eventInvitation.canMemberAccept(eventInvitation)"
+                                    (ionSwipe)="acceptEventInvitation($event, eventInvitation)">
+                    <button ion-button color="secondary" (click)="acceptEventInvitation($event, eventInvitation)">Yes
+                    </button>
+                  </ion-item-options>
+                </ion-item-sliding>
+              </ion-list>
+            </ion-col>
+
+          </ion-row>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <ion-fab right bottom>
+    <button (click)="createEvent()" ion-fab mini color="secondary">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+
+</ion-content>

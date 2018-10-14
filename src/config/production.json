@@ -1,0 +1,8 @@
+{
+  "//how_to": "add fields here if you need to override the default ones in the defaults.json file",
+  "//base_url(local)": "http://10.10.10.144:8000/api/",
+  "//base_url(dev)": "http://52.214.5.72/api/",
+  "base_url": "https://pidge.co/api/",
+  "app_url":"http://app.pidge.co/",
+  "deeplink_url":"pidge://app.pidge.co/"
+}

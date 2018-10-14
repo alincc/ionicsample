@@ -1,0 +1,55 @@
+<ion-header color="white">
+
+  <ion-navbar color="white">
+    <ion-title>About Pidge</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title no-padding>App Info</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div><strong>Version</strong>: {{versionNumber}}</div>
+      <div *ngIf="mobile"><strong>Native Version</strong>: {{version}}</div>
+      <div *ngIf="environment!=='production'"><strong>Channel</strong>: {{environment}}</div>
+      <div *ngIf="environment!=='production'"><strong>Name</strong>: {{appName}} ({{appPackage}})</div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title no-padding>Support</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Send any enquiries to:
+      <a href="mailto:info@pidge.co">info@pidge.co</a>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="mobile">
+    <ion-card-header>
+      <ion-card-title no-padding>Update</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ng-container *ngIf="newVersion">
+        <p>We have found a newer updated version for your Pidge app.</p>
+        <button ion-button (click)="update()" color="primary" icon-left block>
+          <ion-icon name="arrow-dropup"></ion-icon>
+          Update
+        </button>
+      </ng-container>
+      <ng-container *ngIf="!newVersion">
+        <p>Wonderful! You are using the latest version of Pidge app.</p>
+        <button ion-button (click)="checkForUpdate()" color="primary" icon-left block [disabled]="checking">
+          <ion-spinner *ngIf="checking"></ion-spinner>
+          {{checking ? "Checking..." : "Check for Update"}}
+        </button>
+      </ng-container>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

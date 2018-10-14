@@ -1,0 +1,54 @@
+page-login {
+
+  ion-navbar {
+    border-bottom: 0px !important;
+    background-color: color($colors, primary) !important;
+  }
+  ion-content {
+    background-color: color($colors, primary) !important;
+    @include public-bg();
+    .login-flex {
+
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-items: center;
+
+      ion-item {
+        background-color: transparent !important;
+        color: white;
+      }
+
+      > .login-box {
+
+        display: block;
+        width: 100%;
+        flex: 5;
+        padding: 5px;
+        align-self: flex-start;
+
+      }
+
+      > .register-box {
+        flex: 2;
+        width: 100%;
+        display: block;
+      }
+      .submit-btn {
+        background-color: #E7F4F3 !important;
+        font-weight: 700;
+        color: color($colors, primary);
+        margin-bottom: 0px !important;
+      }
+      .register-btn {
+        flex: 3;
+        color: color($colors, light);
+      }
+    }
+  }
+  h1 {
+    color: color($colors, white);
+  }
+}

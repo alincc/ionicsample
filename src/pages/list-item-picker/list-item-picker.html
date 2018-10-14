@@ -1,0 +1,33 @@
+<ion-header color="primary">
+  <ion-navbar color="primary">
+    <ion-buttons left start>
+      <button (click)="cancel()" icon-only>
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons right end>
+      <button (click)="done()" icon-only [disabled]="!selectedItem">
+        <ion-icon name="checkmark"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>{{title || "Please choose"}}</ion-title>
+  </ion-navbar>
+  <ion-navbar color="white">
+    <ion-searchbar [(ngModel)]="searchText" (input)="filter($event)" placeholder="Search"></ion-searchbar>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <p *ngIf="message">{{message}}</p>
+  <ion-list>
+    <ion-item ion-item *ngFor="let item of filteredItems" (click)="select(item.raw)"
+              [color]="isSelected(item.raw)?'secondary':'white'">
+      <ion-avatar item-start>
+        <img *ngIf="item.display.avatar" [src]="item.display.avatar"/>
+      </ion-avatar>
+      <h2>{{item.display.title}}</h2>
+      <h3 *ngIf="item.display.subTitle">{{item.display.subTitle}}</h3>
+      <p *ngIf="item.display.note">{{item.display.note}}</p>
+      <ion-icon [name]="isSelected(item.raw)?'checkmark-circle':''" item-end></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>

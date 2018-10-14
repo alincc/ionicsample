@@ -1,0 +1,82 @@
+<ion-header color="white">
+
+  <ion-navbar color="white">
+    <ion-title>Teams List</ion-title>
+
+    <ion-buttons left start>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher (ionRefresh)="refreshChats($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div *ngIf="!loaded" padding>
+    <h2 color="primary">
+      <ion-spinner></ion-spinner>
+      Loading...
+    </h2>
+  </div>
+
+  <ion-content *ngIf="loaded && !chats.length" padding>
+    <ion-slides class="empty-guide">
+      <ion-slide>
+        <ion-icon class="big" name="chatbubbles"></ion-icon>
+        <h1>No Teams!</h1>
+        <h4>You are not a member of any team currently</h4>
+      </ion-slide>
+      <ion-slide>
+        <span class="big">?</span>
+        <h1>What to do?</h1>
+        <h4>Don't worry, here are few things to help you get started</h4>
+      </ion-slide>
+      <ion-slide>
+        <span class="big">1</span>
+        <h1>Join a Team!</h1>
+        <h4>If you are already in a team, you can ask the admin to invite you on pidge!</h4>
+      </ion-slide>
+      <ion-slide>
+        <span class="big">2</span>
+        <h1>Create a Team!</h1>
+        <h4>If you are a team admin, you can start by creating it in the teams and invite the members to join!</h4>
+      </ion-slide>
+      <ion-slide>
+        <ion-icon name="happy" class="big"></ion-icon>
+        <h1>And You are Alright!</h1>
+        <h4>You can start using Pidge to communicate and collaborate with your team!!</h4>
+      </ion-slide>
+    </ion-slides>
+  </ion-content>
+
+  <ion-list *ngIf="chats.length">
+    <ion-item *ngFor="let chat of chats" (click)="showChat(chat)" class="chat-entry">
+      <ion-avatar item-left class="{{chat?.summary?.newMessages ? 'new-messages':''}}">
+        <h3 *ngIf="!chat.image">{{abbr(chat.title)}}</h3>
+        <img *ngIf="chat.image" [src]="chat.image"/>
+      </ion-avatar>
+      <ion-note item-right>{{chat.lastPostAt | amTimeAgo}}
+      </ion-note>
+      <ion-badge item-right color="secondary" *ngIf="chat?.summary?.newMessages">
+        {{chat?.summary?.newMessages}}
+      </ion-badge>
+      <h2>{{chat.title}}</h2>
+      <h3>{{chat.type}}, {{chat.sport}}</h3>
+      <p>{{chat.description}}</p>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab right bottom>
+    <button ion-fab mini color="secondary" (click)="createChatPage()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+
+</ion-content>

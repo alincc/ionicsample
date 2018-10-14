@@ -1,0 +1,4 @@
+{
+  "//how_to":"add fields here if you need to override the default ones in the defaults.json file",
+  "base_url": "http://52.215.38.237/api/"
+}

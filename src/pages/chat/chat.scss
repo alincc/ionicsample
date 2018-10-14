@@ -1,0 +1,181 @@
+page-chat {
+
+  ion-footer {
+    border-top: 1px solid color($colors, primary_alternate);
+  }
+
+  #chat-content {
+    ion-list {
+      font-size: 1em;
+      margin-bottom: 0;
+
+      h2 {
+        font-weight: 700;
+        color: color($colors, primary);
+      }
+
+      .date {
+        font-size: 0.8em;
+        color: color($colors, light);
+        text-align: right;
+        float: right;
+        padding-left: 10px;
+        margin-top: 4px;
+      }
+
+      > ion-list-header {
+        border-width: 0 0 0 0;
+        font-size: 1em;
+        min-height: 1em;
+        height: 1em;
+        margin: 5px 0;
+
+        ion-label {
+          margin: 0 0 0;
+          font-weight: bold;
+        }
+        &.message-sender {
+          text-align: left !important;
+        }
+        .date {
+          margin-right: 15px;
+        }
+      }
+
+      .message {
+        font-size: 1em;
+        background-color: color($colors, extra_light);
+
+        .item-inner {
+          border-bottom: 0;
+          border-top: 0;
+        }
+
+        .text {
+          display: block;
+          white-space: normal;
+          color: color($colors, dark);
+          float: left;
+          line-height: 1.3em;
+          font-size: 1.1em;
+          border-bottom: 0 transparent none;
+        }
+        .clearfix {
+          clear: both;
+          float: none;
+        }
+        &.is_me {
+          background-color: color($colors, primary_alternate);
+          .text {
+            color: color($colors, primary);
+          }
+        }
+        &.is_system {
+          background-color: color($colors, secondary_alternate);
+          .text {
+            color: color($colors, secondary);
+          }
+        }
+        &:not(.is_me) + .message:not(.is_me) {
+          border-top: 1px solid darken(color($colors, extra_light), 10%);
+        }
+      }
+
+      .message-wrapper + .message-wrapper {
+        > ion-item.message {
+          ion-label {
+            margin-top: 0;
+          }
+        }
+      }
+
+    }
+  }
+
+}
+
+#team-regular-events {
+  ion-note {
+    margin: 0 8px;
+  }
+  ion-list {
+    ion-item {
+      ion-label {
+        margin-top: 15px;
+        margin-bottom: 0;
+      }
+      h2 {
+        font-size: 1.25em;
+      }
+      h3 {
+        font-size: 1em;
+      }
+      div.muted {
+        font-size: 1em !important;
+        color: color($colors, light) !important;
+      }
+    }
+  }
+}
+
+#roles-legend {
+  div.small {
+    font-size: 1em;
+    margin-top: 10px;
+  }
+}
+
+#chat-participants-list {
+  ion-list {
+    ion-list-header {
+      margin-bottom: 0;
+      min-height: 2em;
+      padding: 1em 0 0;
+    }
+    ion-item {
+      ion-label {
+        margin: 0;
+      }
+    }
+  }
+}
+
+ion-menu#chat-info {
+  ion-footer {
+    button[ion-button][full] {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+}
+
+ion-app {
+  &.ios {
+    page-chat {
+      ion-menu#chat-info {
+        z-index: 10;
+        margin-top: 60px;
+        margin-bottom: 50px;
+        .menu-inner {
+          padding-top: 60px;
+        }
+        ion-header {
+          ion-title {
+            padding: 0 0 1px;
+          }
+        }
+      }
+    }
+  }
+  &.md {
+    page-chat {
+      ion-menu#chat-info {
+        margin-top: 56px;
+        margin-bottom: 50px;
+        .menu-inner {
+          padding-top: 56px;
+        }
+      }
+    }
+  }
+}

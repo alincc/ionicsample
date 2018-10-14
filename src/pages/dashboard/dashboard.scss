@@ -1,0 +1,70 @@
+page-dashboard {
+
+  #loading-highlights{
+    opacity: 0.5;
+    font-size: 2em;
+    color: color($colors, dark);
+    text-align: center;
+    margin-top: 50%;
+    transform: translateY(-50%);
+    ion-spinner{
+      width: 25vw;
+      height: 25vw;
+      margin: 0 auto 20px;
+      display: block;
+    }
+  }
+
+  .notification-unit {
+    .notification {
+      h2 {
+        color: color($colors, extra_light);
+      }
+      h3 {
+        white-space: normal;
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  ion-buttons.titled {
+    .title {
+      font-size: 0.8em;
+      display: block;
+      text-align: center;
+      padding: 0 0 0 0;
+      line-height: 12px;
+      min-height: 0;
+      vertical-align: middle;
+    }
+    ion-toggle {
+      display: block;
+      vertical-align: middle;
+      padding: 6px 12px;
+    }
+  }
+
+  ion-list {
+    margin-top: 0 !important;
+  }
+
+  ion-toggle {
+    &.toggle-ios {
+      height: 16px;
+      width: 36px;
+      .toggle-icon{
+        .toggle-inner{
+          width: 12px;
+          height: 12px;
+        }
+      }
+    }
+  }
+
+  #root-notification-group{
+    margin: 0;
+    border: 0;
+    padding: 0;
+  }
+
+}

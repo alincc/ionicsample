@@ -1,0 +1,24 @@
+page-list-item-picker {
+
+  ion-header {
+    ion-navbar[color=primary] {
+      button {
+        background-color: color($colors, primary);
+        color: white;
+        &[icon-only] {
+          ion-icon {
+            font-size: 2.5em;
+          }
+        }
+      }
+    }
+  }
+
+  ion-list {
+    ion-item {
+      p {
+        color: color($colors, light) !important;
+      }
+    }
+  }
+}

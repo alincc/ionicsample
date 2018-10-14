@@ -1,0 +1,766 @@
+// http://ionicframework.com/docs/v2/theming/
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+//Comfortaa Font
+/* latin-ext */
+@font-face {
+  font-family: 'Comfortaa';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Comfortaa Light'), local('Comfortaa-Light'), url('#{$font-path}/comfortaa-light-latin-ext.woff2') format('woff2'), url(https://fonts.gstatic.com/s/comfortaa/v10/r_tUZNl0G8xCoOmp_JkSCojoYw3YTyktCCer_ilOlhE.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Comfortaa';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Comfortaa Light'), local('Comfortaa-Light'), url('#{$font-path}/comfortaa-light-latin.woff2') format('woff2'), url(https://fonts.gstatic.com/s/comfortaa/v10/r_tUZNl0G8xCoOmp_JkSChampu5_7CjHW5spxoeN3Vs.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: 'Comfortaa';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Comfortaa Regular'), local('Comfortaa-Regular'), url('#{$font-path}/comfortaa-regular-latin-ext.woff2') format('woff2'), url(https://fonts.gstatic.com/s/comfortaa/v10/wz1gqe57Mbg11v-OrLlVjoX0hVgzZQUfRDuZrPvH3D8.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Comfortaa';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Comfortaa Regular'), local('Comfortaa-Regular'), url('#{$font-path}/comfortaa-regular-latin.woff2') format('woff2'), url(https://fonts.gstatic.com/s/comfortaa/v10/qLBu5CQmSMt1H43OiWJ77ZBw1xU1rKptJj_0jans920.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: 'Comfortaa';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Comfortaa Bold'), local('Comfortaa-Bold'), url('#{$font-path}/comfortaa-bold-latin-ext.woff2') format('woff2'), url(https://fonts.gstatic.com/s/comfortaa/v10/fND5XPYKrF2tQDwwfWZJI4joYw3YTyktCCer_ilOlhE.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Comfortaa';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Comfortaa Bold'), local('Comfortaa-Bold'), url('#{$font-path}/comfortaa-bold-latin.woff2') format('woff2'), url(https://fonts.gstatic.com/s/comfortaa/v10/fND5XPYKrF2tQDwwfWZJIxampu5_7CjHW5spxoeN3Vs.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 100;
+  src: local('Lato Hairline'), local('Lato-Hairline'), url('#{$font-path}/Lato-Hairline.woff') format('woff'), url(https://fonts.gstatic.com/s/lato/v13/h3_FseZLI76g1To6meQ4zX-_kf6ByYO6CLYdB4HQE-Y.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 100;
+  src: local('Lato Hairline'), local('Lato-Hairline'), url('#{$font-path}/Lato-Hairline.woff') format('woff2'), url(https://fonts.gstatic.com/s/lato/v13/ifRS04pY1nJBsu8-cUFUS-vvDin1pK8aKteLpeZ5c0A.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Lato Light'), local('Lato-Light'), url('#{$font-path}/Lato-Light.woff') format('woff2'), url(https://fonts.gstatic.com/s/lato/v13/IY9HZVvI1cMoAHxvl0w9LVKPGs1ZzpMvnHX-7fPOuAc.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Lato Light'), local('Lato-Light'), url('Lato-Light.woff') format('woff2'), url(https://fonts.gstatic.com/s/lato/v13/22JRxvfANxSmnAhzbFH8PgLUuEpTyoUstqEm5AMlJo4.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), url('Lato-Regular.woff') format('woff2'), url(https://fonts.gstatic.com/s/lato/v13/8qcEw_nrk_5HEcCpYdJu8BTbgVql8nDJpwnrE27mub0.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), url('#{$font-path}/Lato-Regular.woff') format('woff2'), url(https://fonts.gstatic.com/s/lato/v13/MDadn8DQ_3oT6kvnUq_2r_esZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Lato Bold'), local('Lato-Bold'), url('#{$font-path}/Lato-Bold.woff') format('woff2'), url(https://fonts.gstatic.com/s/lato/v13/rZPI2gHXi8zxUjnybc2ZQFKPGs1ZzpMvnHX-7fPOuAc.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Lato Bold'), local('Lato-Bold'), url('#{$font-path}/Lato-Bold.woff') format('woff2'), url(https://fonts.gstatic.com/s/lato/v13/MgNNr5y1C_tIEuLEmicLmwLUuEpTyoUstqEm5AMlJo4.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Lato Black'), local('Lato-Black'), url('#{$font-path}/Lato-Black.woff') format('woff2'), url(https://fonts.gstatic.com/s/lato/v13/t85RP2zhSdDjt5PhsT_SnlKPGs1ZzpMvnHX-7fPOuAc.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Lato Black'), local('Lato-Black'), url('#{$font-path}/Lato-Black.woff') format('woff2'), url(https://fonts.gstatic.com/s/lato/v13/lEjOv129Q3iN1tuqWOeRBgLUuEpTyoUstqEm5AMlJo4.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 100;
+  src: local('Lato Hairline Italic'), local('Lato-HairlineItalic'), url('#{$font-path}/Lato-HairlineItalic.woff') format('woff2'), url(https://fonts.gstatic.com/s/lato/v13/muRcAtdNYlnTj3NeuakxChkAz4rYn47Zy2rvigWQf6w.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 100;
+  src: local('Lato Hairline Italic'), local('Lato-HairlineItalic'), url('#{$font-path}/Lato-HairlineItalic.woff') format('woff2'), url(https://fonts.gstatic.com/s/lato/v13/9TBVFLzQ3GUZLG8FZ4yrEXYhjbSpvc47ee6xR_80Hnw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 300;
+  src: local('Lato Light Italic'), local('Lato-LightItalic'), url('#{$font-path}/Lato-LightItalic.woff') format('woff2'), url(https://fonts.gstatic.com/s/lato/v13/XNVd6tsqi9wmKNvnh5HNEIX0hVgzZQUfRDuZrPvH3D8.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 300;
+  src: local('Lato Light Italic'), local('Lato-LightItalic'), url('#{$font-path}/Lato-LightItalic.woff') format('woff2'), url(https://fonts.gstatic.com/s/lato/v13/2HG_tEPiQ4Z6795cGfdivJBw1xU1rKptJj_0jans920.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Lato Italic'), local('Lato-Italic'), url('#{$font-path}/Lato-Italic.woff') format('woff2'), url(https://fonts.gstatic.com/s/lato/v13/cT2GN3KRBUX69GVJ2b2hxn-_kf6ByYO6CLYdB4HQE-Y.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Lato Italic'), local('Lato-Italic'), url('#{$font-path}/Lato-Italic.woff') format('woff2'), url(https://fonts.gstatic.com/s/lato/v13/1KWMyx7m-L0fkQGwYhWwuuvvDin1pK8aKteLpeZ5c0A.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Lato Bold Italic'), local('Lato-BoldItalic'), url('#{$font-path}/Lato-BoldItalic.woff') format('woff2'), url(https://fonts.gstatic.com/s/lato/v13/AcvTq8Q0lyKKNxRlL28Rn4X0hVgzZQUfRDuZrPvH3D8.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Lato Bold Italic'), local('Lato-BoldItalic'), url('#{$font-path}/Lato-BoldItalic.woff') format('woff2'), url(https://fonts.gstatic.com/s/lato/v13/HkF_qI1x_noxlxhrhMQYEJBw1xU1rKptJj_0jans920.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 900;
+  src: local('Lato Black Italic'), local('Lato-BlackItalic'), url('#{$font-path}/Lato-BlackItalic.woff') format('woff2'), url(https://fonts.gstatic.com/s/lato/v13/81X-1TO5y4aMK2PPy9kFw4X0hVgzZQUfRDuZrPvH3D8.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 900;
+  src: local('Lato Black Italic'), local('Lato-BlackItalic'), url('#{$font-path}/Lato-BlackItalic.woff') format('woff2'), url(https://fonts.gstatic.com/s/lato/v13/VNUH7ZAcagYBWsAiBBCEY5Bw1xU1rKptJj_0jans920.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+* {
+  font-family: 'Lato', sans-serif;
+}
+
+@function is-direction($value) {
+  $is-keyword: index((to top, to top right, to right top, to right, to bottom right, to right bottom, to bottom, to bottom left, to left bottom, to left, to left top, to top left), $value);
+  $is-angle: type-of($value) == 'number' and index('deg' 'grad' 'turn' 'rad', unit($value));
+
+  @return $is-keyword or $is-angle;
+}
+
+@function legacy-direction($value) {
+  @if is-direction($value) == false {
+    @error "Cannot convert `#{$value}` to legacy syntax because it doesn't seem to be a direction.";
+  }
+
+  $conversion-map: (
+    to top : bottom,
+    to top right : bottom left,
+    to right top : left bottom,
+    to right : left,
+    to bottom right : top left,
+    to right bottom : left top,
+    to bottom : top,
+    to bottom left : top right,
+    to left bottom : right top,
+    to left : right,
+    to left top : right bottom,
+    to top left : bottom right
+  );
+
+  @if map-has-key($conversion-map, $value) {
+    @return map-get($conversion-map, $value);
+  }
+
+  @return 90deg - $value;
+}
+
+@mixin linear-gradient($direction, $color-stops...) {
+  background: nth(nth($color-stops, 1), 1);
+  background: -webkit-linear-gradient(legacy-direction($direction), $color-stops);
+  background: linear-gradient($direction, $color-stops);
+}
+
+html, body {
+}
+
+h2 {
+  line-height: 1.6em;
+}
+
+p {
+  line-height: 1.6em;
+}
+
+#content-page {
+
+}
+
+#logo-row {
+  > * {
+    color: color($colors, primary);
+    display: block;
+    > * {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    > img {
+      width: 48px;
+    }
+  }
+}
+
+ion-title {
+  &.with-subtitle {
+    padding-bottom: 0em;
+
+    .toolbar-title {
+      overflow: visible;
+      position: relative;
+
+      &.toolbar-title-md {
+        font-size: 1.3em;
+        vertical-align: middle;
+        .subtitle {
+          position: absolute;
+          top: 8px;
+          font-size: 0.66em;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          height: 1.5em;
+        }
+      }
+      &.toolbar-title-ios {
+        .subtitle {
+          margin-left: auto;
+          margin-right: auto;
+          display: block;
+          width: 100%;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+.light {
+  color: color($colors, light);
+}
+
+.small {
+  font-size: 0.8em;
+}
+
+.color-primary {
+  color: color($colors, primary);
+}
+
+form {
+  > ion-item, .no-space-left {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+  }
+}
+
+ion-header {
+  > ion-navbar {
+    background-color: color($colors, white) !important;
+    color: color($colors, primary) !important;
+    border-bottom: 1px solid color($colors, extra_light);
+  }
+  &:after {
+    box-shadow: 0 0 0;
+    height: 0 !important;
+  }
+}
+
+@mixin public-bg() {
+  background: #02264E none no-repeat fixed 50% 70%;
+  background-image: linear-gradient(to top, #02264E, transparent 90%), url('../assets/images/rain.jpg');
+  background-size: cover;
+  overflow: hidden;
+}
+
+ion-slides.empty-guide {
+  ion-slide {
+    .big {
+      font-size: 200px;
+      color: #002147;
+      opacity: 0.10;
+    }
+    h1 {
+      color: #002147;
+    }
+    h4 {
+      color: #002147;
+      opacity: 0.5;
+    }
+  }
+}
+
+ion-header {
+  ion-navbar {
+    height: 60px !important;
+  }
+
+  border-bottom: 0 none transparent !important;
+  box-shadow: 0 0 0 !important;
+  outline: 0 !important;
+  ion-navbar {
+    border-bottom: 0 none transparent !important;
+    box-shadow: 0 0 0 !important;
+    outline: 0 !important;
+    .toolbar-background {
+      border-color: transparent !important;
+    }
+  }
+
+  &.transparent {
+    background-color: transparent !important;
+
+    ion-navbar {
+      background-color: transparent !important;
+    }
+
+  }
+  .back-button-text {
+    display: none !important;
+  }
+  .back-button-text {
+    display: none !important;
+  }
+}
+
+ion-label.center-label {
+  text-align: center;
+}
+
+//public toasts
+ion-toast.result-toast {
+  .toast-wrapper {
+    .toast-container {
+
+    }
+  }
+  &.success {
+    .toast-wrapper {
+      background-color: color($colors, secondary);
+    }
+  }
+  &.failed {
+    .toast-wrapper {
+      background-color: color($colors, danger_dark);
+    }
+  }
+}
+
+//public alerts
+ion-alert.result-alert {
+  > .alert-wrapper {
+    font-size: 2em;
+    max-width: calc(100vw - 60px);
+    max-height: calc(100vh - 60px);
+    box-shadow: 0 0 100px transparentize(white, 0.1);
+    border: 1px solid transparent;
+    position: relative;
+    border-radius: 0;
+    > .alert-head {
+      &:before {
+        font-family: "Ionicons";
+        display: block;
+        margin: 30px auto 0;
+        text-align: center;
+        line-height: 0.5em;
+        padding-bottom: 15px;
+        font-size: 7.5em;
+        position: absolute;
+        top: -30px;
+        right: -30px;
+        opacity: 0.1;
+        z-index: 0;
+      }
+      .alert-title {
+        text-align: center;
+        font-size: 0.9em;
+        font-family: Lato;
+        font-weight: 700;
+        z-index: 10;
+      }
+      .alert-sub-title {
+        font-size: 1.1em;
+        z-index: 10;
+      }
+      z-index: 0;
+    }
+    > .alert-message {
+      overflow-y: auto;
+      max-width: none;
+      max-height: none;
+      text-align: center;
+      font-size: 0.7em;
+      z-index: 1;
+    }
+    > .alert-button-group {
+      border-top: 0 none;
+      width: calc(100% - 20px);
+      margin: 0 auto;
+      z-index: 1;
+      > button {
+        border: 1px solid transparent;
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+        margin-bottom: 10px;
+        > * {
+          justify-content: center;
+        }
+      }
+    }
+  }
+  &.success {
+    ion-backdrop {
+      @include linear-gradient(to top, white, transparentize(white, 0.1));
+    }
+    > .alert-wrapper {
+      background-color: rgba(255, 255, 255, 0.95) !important;
+      border-color: color($colors, secondary);
+      color: #464646;
+      box-shadow: 0 0 100px lighten(color($colors, secondary), 75) inset, 0 0 100px transparentize(black, 0.5);
+      > .alert-head {
+        &:before {
+          content: "\f2ba";
+          color: color($colors, secondary);
+        }
+        .alert-title {
+          color: color($colors, secondary);
+        }
+        .alert-sub-title {
+        }
+      }
+      > .alert-message {
+      }
+      > .alert-button-group {
+        > button {
+          color: #466846;
+          border-color: color($colors, secondary);
+        }
+      }
+    }
+  }
+  &.info {
+    ion-backdrop {
+      @include linear-gradient(to top, white, transparentize(white, 0.1));
+    }
+    > .alert-wrapper {
+      background-color: color($colors, primary) !important;
+      @include linear-gradient(to top, transparentize(color($colors, primary), 0.1), transparentize(color($colors, primary), 0.3));
+      border-color: transparent; //color($colors, white);
+      color: white;
+      box-shadow: 0 0 100px darken(color($colors, primary), 10) inset, 0 0 100px transparentize(black, 0.5);
+      > .alert-head {
+        &:before {
+          content: "\f19f";
+          color: color($colors, primary_alternate);
+        }
+        .alert-title {
+          color: color($colors, primary_alternate);
+        }
+        .alert-sub-title {
+        }
+      }
+      > .alert-message {
+        color: color($colors, extra_light);
+      }
+      > .alert-button-group {
+        > button {
+          color: color($colors, primary_alternate);
+          border-color: color($colors, primary_alternate);
+        }
+      }
+    }
+  }
+  &.failed {
+    ion-backdrop {
+      background-color: rgba(0, 0, 0, 0.9);
+    }
+    > .alert-wrapper {
+      background-color: rgba(255, 255, 255, 0.95) !important;
+      border-color: color($colors, danger);
+      color: #464646;
+      box-shadow: 0 0 100px lighten(color($colors, danger), 40) inset, 0 0 100px transparentize(black, 0.5);
+      > .alert-head {
+        &:before {
+          content: "\f104";
+          color: color($colors, danger);
+        }
+        .alert-title {
+          color: color($colors, danger);
+        }
+        .alert-sub-title {
+        }
+      }
+      > .alert-message {
+      }
+      > .alert-button-group {
+        > button {
+          border-color: color($colors, danger);
+          color: #684646;
+        }
+      }
+    }
+  }
+}
+
+//public pages
+.public-page { //@TODO:unify css code for login, register, forget, and other public pages with rain bg
+  .item-input-has-focus .label[floating], .item-has-focus .label[floating] {
+    color: white;
+  }
+}
+
+//browser camera capture
+.cordova-camera-select {
+  position: absolute !important;
+  display: block !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  margin: 0 25% !important;
+  border: 2px solid white !important;
+  line-height: 20px !important;
+  padding: 50px !important;
+  background-color: white !important;
+  border-radius: 20px !important;
+  width: 50% !important;
+  font-size: 2em !important;
+  box-shadow: 0 0 30px grey !important;
+}
+
+.cordova-camera-capture {
+
+  position: absolute !important;
+  top: 50% !important;
+  left: 0 !important;
+  transform: translateY(-50%) !important;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 auto !important;
+  float: none !important;
+  text-align: center !important;
+  background-color: transparentize(color($colors, primary), 0.1) !important;
+  font-size: 2.5em !important;
+
+  &:before {
+    content: "Take Camera Photo" !important;
+    display: block !important;
+    height: 1em !important;
+    font-weight: 400;
+    margin-top: 30px !important;
+    color: white;
+  }
+
+  > video {
+    display: block !important;
+    margin: 30px auto !important;
+    width: 30% !important;
+    height: 30% !important;
+    min-height: 256px;
+    min-width: 256px;
+    //background-color: transparentize(color($colors, primary), 0.5) !important;
+    padding: 0 !important;
+    background-color: white;
+    border-radius: 100%;
+    box-shadow: 0 0 20px white;
+  }
+
+  > button {
+    border: 0 !important;
+    background-color: transparentize(white, 0.2);
+    color: color($colors, primary) !important;
+    padding: 0 20px !important;
+    height: 40px !important;
+    font-size: 1em;
+    line-height: 40px;
+    font-weight: bold !important;
+    border-radius: 20px !important;
+    width: 80%;
+  }
+
+}
+
+//generic flexis
+.vertical-flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  .top-box {
+  }
+  .bottom-box {
+  }
+}
+
+.horizontal-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 100%;
+  .left-box {
+  }
+  .right-box {
+  }
+}
+
+.reversed-horizontal-flex {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  height: 100%;
+  .left-box {
+  }
+  .right-box {
+  }
+}
+
+////popup modal
+ion-modal.popup-mode {
+  padding: 30px;
+  background-color: rgba(0, 0, 0, 0.5);
+  > .modal-wrapper {
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+  }
+}
+
+//////ion loading
+ion-loading {
+  .loading-wrapper {
+    background-color: transparent !important;
+    box-shadow: 0 0 0 !important;
+    color: rgba(255, 255, 255, 0.75) !important;
+    svg {
+      circle {
+        stroke: rgba(255, 255, 255, 0.75) !important;
+      }
+    }
+  }
+}
+
+//for auto complete
+@import "../../node_modules/ionic2-auto-complete/auto-complete";
+
+//import custom icons
+@import "../theme/icons";

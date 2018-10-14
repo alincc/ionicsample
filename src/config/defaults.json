@@ -1,0 +1,12 @@
+{
+  "//how_to": "add fields to the specific environment config file if you need to override the default defined here",
+  "api_version": "1",
+  "base_url": "https://pidge.co/api/",
+  "load_messages_refresh_rate": 2000,
+  "load_meta_data_refresh_rate": 15000,
+  "team_slots_first_day": 0,
+  "event_invitation_hours_to_close": 0,
+  "event_invitation_admin_hours_to_close": 0,
+  "ionic_app_id": "d2590f5e",
+  "google_analytics_id": "UA-104344824-1"
+}

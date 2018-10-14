@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "745023042745",
+    "firebase_url": "https://pidge-mobile-app.firebaseio.com",
+    "project_id": "pidge-mobile-app",
+    "storage_bucket": "pidge-mobile-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:745023042745:android:2f234d8e14ed6ed1",
+        "android_client_info": {
+          "package_name": "co.pidge.mobileapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "745023042745-arg19hujkcgkbleuvqgjv6r77fe55fnq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.pidge.mobileapp",
+            "certificate_hash": "3714879ae6d056ddc594cefcbd437584cdff9c5a"
+          }
+        },
+        {
+          "client_id": "745023042745-74f7rttvn2pk829uvp1nek8a9g2v2q05.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuijsAi6ie5cJVYz5D0Lj-w2AiKtLSRQs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "745023042745-74f7rttvn2pk829uvp1nek8a9g2v2q05.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

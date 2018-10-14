@@ -1,0 +1,185 @@
+<ion-header class="header-class">
+
+  <ion-navbar color="primary" >
+    <ion-title class="with-subtitle">
+      {{team?team.title:"Loading..."}}
+      <p class="subtitle">{{team?.description}}</p>
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <div class="user-image" (click)="changePhoto()">
+    <ion-avatar align-self-center class="container">
+      <img class="image-bg" [src]="team?.image || '/assets/images/badge.png'"/>
+      <div class="centered" >
+        <ion-icon *ngIf="!team?.image"  style="font-size:50px;" color="primary" name="camera" ></ion-icon>
+      </div>
+    </ion-avatar>
+  </div>
+
+  <ng-container *ngIf="team">
+    <div padding>
+
+      <ion-list no-lines *ngIf="currentUser && you">
+
+        <button *ngIf="team?.you?.isAdmin" ion-item (click)="editChat()">
+          <ion-icon color="primary" name="md-create" item-start></ion-icon>
+          Edit Team Information
+        </button>
+
+        <button *ngIf="team?.you?.isAdmin" ion-item (click)="publicInvitationPage()"
+                class="public-invitation-page-link">
+          <ion-icon color="primary" name="globe" item-start></ion-icon>
+          Public Invitation Page
+        </button>
+
+        <ng-container>
+          <div class="reversed-horizontal-flex">
+            <button *ngIf="team?.you?.isAdmin" color="primary" clear icon-only ion-button (click)="addUser()"
+                    class="fix-right square-button">
+              <ion-icon name="md-add"></ion-icon>
+            </button>
+            <button ion-item [class.collapsed]="currentSection!=='members'"
+                    class="sliding-list-handler members-list-handler">
+              <ion-icon  (click)="toggleCurrentSection('members')" color="primary" name="people" md="md-people" item-start></ion-icon>
+              <ion-icon  (click)="toggleCurrentSection('members')" name="ios-arrow-down-outline" item-end class="handler-arrow"></ion-icon>
+              <ion-icon *ngIf="team?.you?.isAdmin" (click)="pendingInvitedMembers()" name="more"  item-end class="handler-arrow"></ion-icon>
+
+              Team Members
+            </button>
+            
+          </div>
+          <ion-item [class.collapsed]="currentSection!=='members'" class="sliding-list members-list"
+                    [style.maxHeight.px]="team.users.length * 150 + 50">
+            <ion-list lines>
+              <button ion-item *ngFor="let user of team.users" (click)="participantInfo(user)">
+                <ion-avatar item-start>
+                  <img [src]="user.image"/>
+                </ion-avatar>
+                <h2>{{user.name}}</h2>
+                <h3>{{user.pivot.type("Member")}}</h3>
+              </button>
+            </ion-list>
+          </ion-item>
+        </ng-container>
+
+        <ng-container>
+          <div class="reversed-horizontal-flex">
+            <button *ngIf="team?.you?.isAdmin" color="primary" clear icon-only ion-button (click)="addEvent()"
+                    class="fix-right square-button">
+              <ion-icon name="md-add"></ion-icon>
+            </button>
+            <button ion-item (click)="toggleCurrentSection('events')" [class.collapsed]="currentSection!=='events'"
+                    class="sliding-list-handler events-list-handler">
+              <ion-icon color="primary" name="md-calendar" item-start></ion-icon>
+              <ion-icon name="ios-arrow-down-outline" item-end class="handler-arrow"></ion-icon>
+              Team Schedule
+            </button>
+
+          </div>
+          <ion-item [class.collapsed]="currentSection!=='events'" class="sliding-list events-list"
+                    [style.maxHeight.px]="team.events.length * 150 + 50">
+            <ion-list no-lines no-padding>
+              <ion-item *ngIf="!team?.events?.length">
+                No schedules in this team
+              </ion-item>
+              <ion-item *ngFor="let event of team.events">
+                <div class="reversed-horizontal-flex">
+                  <div class="user-interaction-buttons">
+                    <button ion-button color="primary" mini icon-only clear (click)="editRegularEvent(event)"
+                            *ngIf="team?.you?.isAdmin">
+                      <ion-icon name="md-create"></ion-icon>
+                    </button>
+                    <button ion-button color="danger" mini icon-only clear (click)="removeRegularEvent(event)"
+                            *ngIf="team?.you?.isAdmin">
+                      <ion-icon name="ios-close"></ion-icon>
+                    </button>
+                  </div>
+                  <h2 class="event-title">{{event.title || "Unnamed Event"}}</h2>
+                </div>
+                <div class="event-next">
+                  <ng-container *ngIf="event.nextInstance">
+                    <h3 *ngIf="event.nextInstance" class="muted">
+                      Next is on {{event.nextInstance.date.getDate()}}
+                      {{displayMonth(event.nextInstance.date.getMonth())}}
+                    </h3>
+                  </ng-container>
+                  <ng-container *ngIf="!event.nextInstance && event.nextOccurrence">
+                    <h3 *ngIf="!event.nextInstance && event.nextOccurrence" class="muted">
+                      Should happen on {{event.nextOccurrence.getDate()+1}}
+                      {{displayMonth(event.nextOccurrence.getMonth())}}
+                    </h3>
+                    <ion-icon item-end name="alert"
+                              (click)="alert('The event is not created yet, but you will get invited once done.')"></ion-icon>
+                  </ng-container>
+                </div>
+                <div class="horizontal-flex repeat-box">
+                  <div class="repeat-unit" align-self-start>
+                    <ng-container [ngSwitch]="event?.intervalUnit">
+                      <ng-container *ngSwitchCase="'Day'">Daily</ng-container>
+                      <ng-container *ngSwitchCase="'Month'">Monthly</ng-container>
+                      <ng-container *ngSwitchDefault>Weekly</ng-container>
+                    </ng-container>
+                  </div>
+                  <div class="repeat-month-day" *ngIf="event?.intervalUnit==='Month'" align-self-center>
+                    On the {{addNumberSuffix(event.intervalStartsOn.getDate()+1)}}
+                  </div>
+                  <div class="repeat-week-day" *ngIf="event?.intervalUnit==='Week'" align-self-center>
+                    Every {{dayName(event.intervalStartsOn.getDay())}}
+                  </div>
+                  <div class="repeat-time" align-self-end>
+                    @ {{event.time.stringValueAdjusted}}
+                  </div>
+                </div>
+              </ion-item>
+            </ion-list>
+          </ion-item>
+        </ng-container>
+        <ng-container *ngIf="team?.you?.isAdmin">
+          <div class="reversed-horizontal-flex">
+            <button *ngIf="team?.you?.isAdmin" color="primary" clear icon-only ion-button (click)="addUrl()"
+                    class="fix-right square-button">
+              <ion-icon name="md-add"></ion-icon>
+            </button>
+            <button ion-item (click)="toggleCurrentSection('publicUrls')"
+                    [class.collapsed]="currentSection!=='publicUrls'"
+                    class="sliding-list-handler members-list-handler">
+              <ion-icon color="primary" name="wifi" md="md-wifi" item-start></ion-icon>
+              <ion-icon name="ios-arrow-down-outline" item-end class="handler-arrow"></ion-icon>
+              Public Urls
+            </button>
+          </div>
+          <ion-item *ngIf="showUrl" [class.collapsed]="currentSection!=='publicUrls'" class="sliding-list members-list"
+                    [style.maxHeight.px]="publicUrls.length * 150 + 50">
+            <ion-list lines>
+              <ion-item *ngIf="!publicUrls?.length">
+                No public url in this team
+              </ion-item>
+              <ion-item *ngFor="let url of publicUrls">
+
+                <h2>{{prefixPublicUrl}}{{url.url}}</h2>
+                <ion-icon name="copy" class="icon-right" item-end item-right
+                          (click)="copyToClipboard(url.url)"></ion-icon>
+                <ion-icon name="share" class="icon-right" item-end item-right (click)="shareUrl(url.url)"></ion-icon>
+                <ion-icon name="mail" class="icon-right" item-end item-right (click)="shareUrlViaMail(url.url)"></ion-icon>
+                <ion-icon name="trash" class="icon-right" item-end item-right (click)="deleteUrl(url)"></ion-icon>
+                <ion-icon name="eye" class="icon-right" item-end item-right (click)="openUrl(url.url)"></ion-icon>
+
+                <!-- <h3>{{user.pivot.type("Member")}}</h3> -->
+              </ion-item>
+            </ion-list>
+          </ion-item>
+        </ng-container>
+        <button ion-item class="leave-team" (click)="leaveChat()">
+          <ion-icon name="exit"></ion-icon>
+          Leave Team
+        </button>
+
+
+      </ion-list>
+
+    </div>
+  </ng-container>
+</ion-content>

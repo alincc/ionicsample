@@ -1,0 +1,188 @@
+page-event {
+
+  .user-interaction-dev {
+    padding: 0 11px;
+    .question {
+      line-height: 56px;
+      color: black;
+      font-size: 1.3em;
+      font-weight: 600;
+      vertical-align: middle;
+      position: relative;
+      display: block;
+    }
+    button {
+      display: inline-block;
+      vertical-align: middle;
+      height: 40px;
+      width: 40px;
+      margin: 10px 5px;
+    }
+
+    &.disabled {
+      .question {
+        color: rgba(48, 48, 48, 0.25);
+      }
+    }
+
+  }
+
+  .event-info {
+    .event-note {
+      ion-label {
+        height: auto;
+        word-wrap: normal !important;
+        white-space: normal;
+        max-height: inherit;
+      }
+    }
+  }
+
+  ion-list.event-info {
+    margin-bottom: 0px;
+    ion-item, [ion-item] {
+      &[color=danger][clear] {
+        background-color: white !important;
+        color: color($colors, danger) !important;
+      }
+    }
+  }
+
+  h2.section-title {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.3em;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: color($colors, primary);
+    > span {
+      display: inline-block;
+      background-color: white;
+      padding: 0 15px;
+    }
+    &:after {
+      border-bottom: 1px solid color($colors, light);
+      content: " ";
+      display: block;
+      position: relative;
+      width: 100%;
+      height: 1px;
+      margin-top: -15px;
+      z-index: -1;
+    }
+  }
+  .members-section {
+    ion-list-header, ion-list-header * {
+      padding: 0 !important;
+      margin: 0 0 0 !important;
+      text-align: center;
+      font-size: 1em;
+      background-color: color($colors, extra_light);
+    }
+    ion-item {
+      padding: 7.5px 7.5px !important;
+      margin: 0 0 0 0 !important;
+      text-align: left !important;
+      h2 {
+        text-align: left;
+        font-size: 1.1em;
+        font-weight: 500;
+        padding: 0 0 0 0 !important;
+        margin: 0 0 0 0 !important;
+      }
+      ion-avatar {
+        width: 55px;
+        height: 55px;
+        img {
+          width: 55px;
+          height: 55px;
+        }
+      }
+      .event-invitation-position-block {
+        * {
+          display: inline-block;
+          vertical-align: baseline;
+          line-height: 0.9em;
+          font-size: 0.9em;
+        }
+        button {
+          color: color($colors, light);
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+          height: 1em;
+        }
+      }
+      button[ion-button][icon-only] {
+        width: 40px;
+        height: 40px;
+        margin: 0 0 0 10px !important;
+        ion-icon {
+          line-height: 25px;
+          font-size: 25px;
+          text-align: center;
+          vertical-align: middle;
+        }
+        &.outline {
+          background-color: white !important;
+        }
+      }
+    }
+  }
+
+  .bg-primary {
+    background-color: color($colors, primary);
+    color: white;
+  }
+
+  .bg-secondary {
+    background-color: color($colors, secondary);
+    color: white;
+  }
+
+  .bg-danger {
+    background-color: color($colors, danger_alternate);
+    color: white;
+  }
+
+  .bg-danger_alternate {
+    background-color: color($colors, danger_alternate);
+    color: white;
+  }
+
+  .bg-secondary_alternate {
+    background-color: color($colors, secondary_alternate);
+    color: white;
+  }
+
+  .bg-invite {
+    background-color: color($colors, primary);
+    color: white;
+  }
+
+  ion-item {
+    ion-icon {
+      color: black;
+      opacity: 0.5;
+    }
+  }
+
+  ion-col[col-2] {
+    vertical-align: middle;
+  }
+
+  ion-col[col-4] {
+    text-align: left;
+    margin-left: 5px;
+    vertical-align: middle;
+  }
+
+  ion-col[col-5] {
+    text-align: right;
+    margin-right: 5px !important;
+    vertical-align: middle;
+  }
+
+}
+
+
+

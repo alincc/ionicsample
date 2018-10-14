@@ -1,0 +1,52 @@
+<ion-header color="white">
+
+  <ion-navbar color="white">
+    <ion-title>Event for {{chat.title}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <form (submit)="createEvent()" #createForm="ngForm">
+
+    <ion-list>
+
+      <ion-item>
+        <ion-label floating>Title</ion-label>
+        <ion-input disable-keyboard-auto-words name="title" [(ngModel)]="event.title" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Event date</ion-label>
+        <ion-datetime name="date" displayFormat="YYYY-MM-DD" [min]="minDate" [max]="maxDate" [(ngModel)]="event.date"
+                      required></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Event time</ion-label>
+        <ion-datetime name="time" displayFormat="HH:mm" [(ngModel)]="event.time" required></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Note</ion-label>
+        <ion-input disable-keyboard-auto-words name="note" [(ngModel)]="event.note"></ion-input>
+      </ion-item>
+
+    </ion-list>
+
+    <h2>Invite</h2>
+    <ion-list>
+      <ion-item *ngFor="let user of chat.users">
+        <ion-checkbox color="primary" [(ngModel)]="users[user.uqid]" name="invited"></ion-checkbox>
+        <ion-label>{{user.name}}</ion-label>
+      </ion-item>
+    </ion-list>
+
+    <button ion-button class="submit-btn" full type="submit" [disabled]="!createForm.form.valid">
+      Create
+    </button>
+
+  </form>
+
+</ion-content>

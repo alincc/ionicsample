@@ -1,0 +1,104 @@
+ion-modal {
+  padding: calc((100vh - 346px) / 2) calc((100vw - 316px) / 2) !important;
+  ion-backdrop {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    visibility: visible !important;
+  }
+  .modal-wrapper {
+    position: relative;
+    width: 100% !important;
+    height: 100% !important;
+    top: 0 !important;
+    left: 0 !important;
+    box-shadow: 0 0 120px black;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+}
+
+page-fallback-image-file-picker {
+  width: 316px !important;
+  height: 346px !important;
+  box-shadow: 0 0 60px transparentize(black, 0.5);
+  z-index: 10000000;
+  text-align: center;
+  border-radius: 20px;
+  overflow: hidden;
+  button {
+    position: absolute;
+    top: 0px;
+    background-color: transparent;
+    color: white;
+    padding: 0 0 0 0;
+    font-size: 3em;
+    height: 1em !important;
+    width: 1em !important;
+    text-align: center;
+    > ion-icon {
+      padding: 0 0 !important;
+      line-height: 1em !important;
+      font-size: 1em !important;
+    }
+    &.close {
+      left: 0px;
+      > ion-icon {
+        text-shadow: 0 0 10px red;
+      }
+    }
+    &.done {
+      right: 0px;
+      > ion-icon {
+        text-shadow: 0 0 10px white;
+      }
+    }
+  }
+
+  #image-picker {
+    width: 1px !important;
+    height: 1px !important;
+    display: inline-block;
+    opacity: 0 !important;
+    position: fixed !important;
+    top: -2000px !important;
+    left: -2000px !important;
+  }
+
+  ion-content, ion-content > .scroll-content {
+    padding: 30px !important;
+    background-color: color($colors, primary);
+    color: white;
+  }
+
+  .image-wrapper {
+    background: color($colors, extra_light) center;
+    background-size: cover;
+    width: calc(100vw - 120px);
+    max-width: 256px;
+    height: calc(100vw - 120px);
+    max-height: 256px;
+    display: block;
+    margin: 15px auto;
+    border-radius: 100%;
+    position: relative;
+    color: color($colors, primary);
+    > div {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      text-align: center;
+      > ion-icon {
+        display: block;
+        font-size: 4em;
+        color: color($colors, light);
+      }
+    }
+    &.filled {
+      > div {
+        opacity: 0.5;
+        color: white;
+      }
+    }
+  }
+
+}

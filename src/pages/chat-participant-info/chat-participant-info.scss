@@ -1,0 +1,75 @@
+page-chat-participant-info {
+
+  .user-image {
+    height: 100px;
+    background-color: color($colors, primary);
+    text-align: center;
+    display: block;
+    position: relative;
+    margin-bottom: 50px;
+    overflow: visible;
+    padding-top: 25px;
+
+    ion-avatar {
+
+      text-align: center;
+
+      img {
+
+        border-radius: 100%;
+        display: block;
+        margin: 0 auto;
+        background-color: white;
+        padding: 5px;
+        width: 128px;
+        height: 128px;
+
+      }
+
+    }
+  }
+
+  .user-name {
+    text-align: center;
+    h1 {
+      font-size: 2em;
+      color: color($colors, primary);
+    }
+  }
+  .user-role {
+    text-align: center;
+    button, ion-icon {
+      display: inline-block;
+      width: 25px;
+      height: 25px;
+      font-size: 25px;
+      line-height: 25px;
+      padding: 0 !important;
+      margin: 0 !important;
+      vertical-align: middle;
+    }
+    h2 {
+      font-size: 1.5em;
+      color: color($colors, dark);
+      display: inline-block;
+      vertical-align: middle;
+      margin: 0 0 0 0 !important;
+    }
+  }
+  .remove-user {
+    margin-top: 30px !important;
+    margin-bottom: 30px !important;
+    color: color($colors, danger);
+    text-align: center;
+    ion-icon {
+      display: inline-block;
+      vertical-align: middle;
+      font-size: 25px !important;
+      height: 25px !important;
+      width: 25px !important;
+      line-height: 25px !important;
+      float: none;
+    }
+  }
+
+}

@@ -1,0 +1,8 @@
+<ion-tabs color="primary">
+  <ion-tab [root]="tab3Root" tabIcon="md-calendar" [tabBadge]="events > 0 ? events : null"
+           tabBadgeStyle="danger_dark"></ion-tab>
+  <ion-tab [root]="tab2Root" tabIcon="md-people" [tabBadge]="chats > 0 ? chats : null"
+           tabBadgeStyle="danger_dark"></ion-tab>
+  <ion-tab [root]="tab1Root" tabIcon="md-star-outline" [tabBadge]="notifications > 0 ? notifications : null"
+           tabBadgeStyle="danger_dark"></ion-tab>
+</ion-tabs>

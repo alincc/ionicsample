@@ -1,0 +1,70 @@
+<ion-header color="white">
+
+  <ion-navbar color="white">
+
+    <ion-title>
+      {{chat ? chat.title : "Loading Team Chat"}}
+    </ion-title>
+
+    <ion-buttons right end>
+      <button icon-only ion-button (click)="showTeamInfo()">
+        <ion-icon ios="ios-settings" md="md-settings"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content no-padding="top">
+
+  <ion-loading *ngIf="!loaded"></ion-loading>
+
+  <ion-refresher (ionRefresh)="refreshChat($event)" *ngIf="loaded">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div id="chat-content" *ngIf="loaded">
+    <ion-list no-padding>
+      <ng-container *ngFor="let messageGroup of messages; index as messageGroupIndex" class="message-object">
+        <ng-container *ngIf="messageGroup.isSystem">
+          <ion-list-header class="message-sender">
+            <span text-right class="date">{{messageGroup.messages[0].createdAt | amTimeAgo}}</span>
+            {{messageGroup.messages[0].message}}
+          </ion-list-header>
+        </ng-container>
+        <ng-container *ngIf="!messageGroup.isSystem">
+          <ion-item [ngClass]="{is_me:isItMe(messageGroup),message:true,even:messageGroupIndex%2===0}" align-self-middle
+                    vertical-align-middle>
+            <ion-avatar item-start><img src="{{messageGroup.sender.user.image}}"></ion-avatar>
+            <h2>{{chat?.you && messageGroup?.sender?.userId===chat.you?.userId ? "You" :
+              messageGroup?.sender?.user?.name}}</h2>
+            <div class="message-content" *ngFor="let message of messageGroup.messages"
+                 (press)="messageOptions($event, message)">
+              <p class="text">{{message.message}}</p>
+              <span text-right class="date">{{message.createdAt | amTimeAgo}}</span>
+              <div class="clearfix"></div>
+            </div>
+          </ion-item>
+        </ng-container>
+      </ng-container>
+    </ion-list>
+  </div>
+
+</ion-content>
+
+<ion-footer no-border>
+  <form (submit)="sendMessage()">
+    <ion-toolbar>
+      <ion-input type="text" placeholder="Type a message..." [(ngModel)]="message.message" name="message"
+                 [disabled]="busy || !loaded || chat?.you?.leftAt"
+                 enable-keyboard-auto-words required autocomplete="on" autocorrect="on" autocapitalize="on"
+                 spellcheck="true"></ion-input>
+      <ion-buttons end>
+        <button ion-button icon-right color="royal" icon-only [disabled]="busy || !loaded || chat?.you?.leftAt">
+          <ion-icon name="send"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-toolbar>
+  </form>
+</ion-footer>

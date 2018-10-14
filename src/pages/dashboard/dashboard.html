@@ -1,0 +1,77 @@
+<ion-header color="white">
+
+  <ion-navbar color="white">
+
+    <ion-buttons left start>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-buttons right end class="titled">
+      <div class="title">Group?</div>
+      <ion-toggle color="secondary" [(ngModel)]="grouped"></ion-toggle>
+    </ion-buttons>
+
+    <ion-title>Welcome {{user ? user.name : ""}}</ion-title>
+
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher (ionRefresh)="refreshNotifications($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div padding *ngIf="!firstTimeLoaded" id="loading-highlights">
+    <ion-spinner></ion-spinner>
+    Loading your highlights...
+  </div>
+
+  <ion-content *ngIf="firstTimeLoaded && !notifications.length" padding>
+    <ion-slides class="empty-guide">
+      <ion-slide>
+        <ion-icon class="big" name="star"></ion-icon>
+        <h1>No Highlights!</h1>
+        <h4>There are currently no highlights</h4>
+      </ion-slide>
+      <ion-slide>
+        <span class="big">?</span>
+        <h1>What to do?</h1>
+        <h4>Don't worry, here are few things to help you get started</h4>
+      </ion-slide>
+      <ion-slide>
+        <span class="big">1</span>
+        <h1>Join a Team!</h1>
+        <h4>If you are already in a team, you can ask the admin to invite you on pidge!</h4>
+      </ion-slide>
+      <ion-slide>
+        <span class="big">2</span>
+        <h1>Create a Team!</h1>
+        <h4>If you are a team admin, you can start by creating it in the teams and invite the members to join!</h4>
+      </ion-slide>
+      <ion-slide>
+        <ion-icon name="happy" class="big"></ion-icon>
+        <h1>And You are Alright!</h1>
+        <h4>Highlights of your teams and events will start to gather here!!</h4>
+      </ion-slide>
+    </ion-slides>
+  </ion-content>
+
+  <ng-container *ngIf="notifications.length">
+    <ng-container *ngIf="grouped">
+      <ion-list no-lines>
+        <highlight-group *ngFor="let group of notificationGroups.subgroups" [group]="group" [isExpanded]="expanded()"
+                         [toggle]="toggleGroup()" [grouped]="grouped"
+                         [entryViewModel]="getViewModel()" id="root-notification-group"></highlight-group>
+      </ion-list>
+    </ng-container>
+    <ion-list no-lines no-padding no-margin *ngIf="!grouped">
+      <ng-container *ngFor="let notification of notificationGroups.values">
+        <highlight-entry *ngIf="!notification.isRead" [notification]="getViewModel()(notification)"></highlight-entry>
+      </ng-container>
+    </ion-list>
+  </ng-container>
+</ion-content>

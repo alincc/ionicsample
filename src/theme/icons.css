@@ -1,0 +1,146 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../assets/fonts/icomoon.eot?obrgv2');
+  src:  url('../assets/fonts/icomoon.eot?obrgv2#iefix') format('embedded-opentype'),
+    url('../assets/fonts/icomoon.ttf?obrgv2') format('truetype'),
+    url('../assets/fonts/icomoon.woff?obrgv2') format('woff'),
+    url('../assets/fonts/icomoon.svg?obrgv2#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ai-add:before ,
+.ion-ios-ai-add:before ,
+.ion-ios-ai-add-outline:before ,
+.ion-md-ai-add:before ,
+.ion-md-ai-add-outline:before {
+  content: "\e900";
+  font-size: 25px;
+}
+.ai-calendar:before , 
+.ion-ios-ai-calendar:before ,
+.ion-ios-ai-calendar-outline:before ,
+.ion-md-ai-calendar:before ,
+.ion-md-ai-calendar-outline:before {
+  content: "\e907";
+  font-size: 25px;
+}
+.ai-cancel-1:before , 
+.ion-ios-ai-cancel-1:before ,
+.ion-ios-ai-cancel-1-outline:before ,
+.ion-md-ai-cancel-1:before ,
+.ion-md-ai-cancel-1-outline:before {
+  content: "\e908";
+  font-size: 25px;
+}
+.ai-clock:before ,
+.ion-ios-ai-clock:before ,
+.ion-ios-ai-clock-outline:before ,
+.ion-md-ai-clock:before ,
+.ion-md-ai-clock-outline:before {
+  content: "\e90c";
+  font-size: 25px;
+}
+.ai-correct:before ,
+.ion-ios-ai-correct:before ,
+.ion-ios-ai-correct-outline:before ,
+.ion-md-ai-correct:before ,
+.ion-md-ai-correct-outline:before {
+  content: "\e90f";
+  font-size: 25px;
+}
+.ai-down-arrow:before ,
+.ion-ios-ai-arrow:before ,
+.ion-ios-ai-arrow-outline:before ,
+.ion-md-ai-arrow:before ,
+.ion-md-ai-arrow-outline:before {
+  content: "\e915";
+  font-size: 25px;
+}
+.ai-edit:before ,
+.ion-ios-ai-edit:before ,
+.ion-ios-ai-edit-outline:before ,
+.ion-md-ai-edit:before ,
+.ion-md-ai-edit-outline:before {
+  content: "\e917";
+  font-size: 25px;
+}
+.ai-favorite:before ,
+.ion-ios-ai-favorite:before ,
+.ion-ios-ai-favorite-outline:before ,
+.ion-md-ai-favorite:before ,
+.ion-md-ai-favorite-outline:before {
+  content: "\e91a";
+  font-size: 25px;
+}
+.ai-file:before ,
+.ion-ios-ai-file:before ,
+.ion-ios-ai-file-outline:before ,
+.ion-md-ai-file:before ,
+.ion-md-ai-file-outline:before {
+  content: "\e91b";
+  font-size: 25px;
+}
+.ai-left-arrow:before ,
+.ion-ios-ai-arrow:before ,
+.ion-ios-ai-arrow-outline:before ,
+.ion-md-ai-arrow:before ,
+.ion-md-ai-arrow-outline:before {
+  content: "\e92a";
+  font-size: 25px;
+}
+.ai-members:before ,
+.ion-ios-ai-members:before ,
+.ion-ios-ai-members-outline:before ,
+.ion-md-ai-members:before ,
+.ion-md-ai-members-outline:before {
+  content: "\e930";
+  font-size: 25px;
+}
+.ai-placeholder:before ,
+.ion-ios-ai-placeholder:before ,
+.ion-ios-ai-placeholder-outline:before ,
+.ion-md-ai-placeholder:before ,
+.ion-md-ai-placeholder-outline:before {
+  content: "\e938";
+  font-size: 25px;
+}
+.ai-profile:before ,
+.ion-ios-ai-profile:before ,
+.ion-ios-ai-profile-outline:before ,
+.ion-md-ai-profile:before ,
+.ion-md-ai-profile-outline:before {
+  content: "\e93d";
+  font-size: 25px;
+}
+.ai-right-arrow:before ,
+.ion-ios-ai-right-arrow:before ,
+.ion-ios-ai-right-arrow-outline:before ,
+.ion-md-ai-right-arrow:before ,
+.ion-md-ai-right-arrow-outline:before {
+  content: "\e945";
+  font-size: 25px;
+}
+.ai-settings-1:before ,
+.ion-ios-ai-settings-1:before ,
+.ion-ios-ai-settings-1-outline:before ,
+.ion-md-ai-right-settings-1:before ,
+.ion-md-ai-right-settings-1-outline:before {
+  content: "\e949";
+  font-size: 25px;
+}

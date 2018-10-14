@@ -1,0 +1,66 @@
+<!--<div *ngIf="user && !user['email_verified']" class="email-verification-alert">-->
+  <!--<ion-icon name="alert"></ion-icon>-->
+  <!--<strong>Email not verified!</strong> Please follow the verification link we sent to you email address to activate your account and ensure service continuity.-->
+<!--</div>-->
+<ion-menu [content]="content" side="left" id="main-side-menu">
+
+  <ion-content>
+
+    <ion-list no-lines>
+
+      <ng-container *ngIf="user" no-lines>
+
+        <ion-item no-lines="">
+          <ion-avatar item-left (click)="changePhoto()">
+            <img src="{{user.image}}">
+          </ion-avatar>
+          <h2>{{user.name}}</h2>
+          <p>{{user.email}}</p>
+        </ion-item>
+
+        <ion-item-divider></ion-item-divider>
+
+        <button ion-item *ngFor="let page of pages" (click)="openPage(page)" menuClose>
+          <ion-icon [name]="page.icon" item-left></ion-icon>
+          {{page.title}}
+        </button>
+
+        <button ion-item (click)="changePassword()" menuClose>
+          <ion-icon name="lock" item-left></ion-icon>
+          Change Password
+        </button>
+
+        <button ion-item (click)="logout()" menuClose>
+          <ion-icon name="log-out" item-left></ion-icon>
+          Logout
+        </button>
+
+      </ng-container>
+
+      <ng-container *ngIf="!user">
+
+        <button ion-item (click)="displayNextPage()" menuClose>
+          <ion-icon name="log-in" item-left></ion-icon>
+          Login
+        </button>
+
+        <button ion-item (click)="displayRegisterPage()" menuClose>
+          <ion-icon name="person-add" item-left></ion-icon>
+          Regiter
+        </button>
+
+      </ng-container>
+
+      <button ion-item (click)="displayAboutPage()" menuClose>
+        <ion-icon name="information-circle" item-left></ion-icon>
+        About
+      </button>
+
+    </ion-list>
+
+    <p class="small light" small light text-center>All times are UTC{{timezoneOffset()}}</p>
+
+  </ion-content>
+
+</ion-menu>
+<ion-nav id="nav" [root]="rootPage" #content swipe-back-enabled="false"></ion-nav>

@@ -1,0 +1,45 @@
+<ion-header color="primary">
+
+  <ion-navbar color="primary">
+
+  </ion-navbar>
+
+</ion-header>
+<ion-content no-padding no-margin>
+
+  <ng-container *ngIf="urlObject">
+
+    <div class="header">
+      <img src="{{urlObject?.linkable?.image}}" />
+      <h1>{{urlObject?.linkable?.title}}</h1>
+    </div>
+
+    <div padding text-center align-center>
+      <p>{{urlObject?.linkable?.sport}} - {{urlObject?.linkable?.type}}</p>
+      <p>{{urlObject?.linkable?.description}}</p>
+      <ion-row>
+        <ion-col>
+            <ion-buttons (click)="joinTeam()">
+                <button ion-button color="royal" full >
+                  Join Team
+                </button>
+              </ion-buttons>
+        </ion-col>
+        <ion-col>
+            <ion-buttons (click)="checkSchedule()">
+                <button ion-button color="royal" full>
+                  Check Schedule
+                </button>
+              </ion-buttons>
+        </ion-col>
+      </ion-row>
+      <!-- <ion-buttons (click)="joinTeam()">
+        <button ion-button color="royal">
+          Join Team
+        </button>
+      </ion-buttons> -->
+    </div>
+
+  </ng-container>
+
+</ion-content>

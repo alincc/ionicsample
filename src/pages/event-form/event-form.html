@@ -1,0 +1,85 @@
+<ion-header color="white">
+
+  <ion-navbar color="white">
+    <ion-title>Create Event</ion-title>
+
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content no-padding>
+
+  <div class="event-flex" no-padding>
+
+    <form (ngSubmit)="createEvent($event)" #createEventForm="ngForm" no-padding>
+
+      <ion-item>
+        <ion-label floating>Team</ion-label>
+        <ion-select [(ngModel)]="model.team_uqid" name="teamUqid" required>
+          <ion-option *ngFor="let adminedTeam of teams" [value]="adminedTeam.uqid">{{adminedTeam.title}}
+          </ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item no-padding>
+        <ion-label floating>Event Name</ion-label>
+        <ion-input type="text" disable-keyboard-auto-words [(ngModel)]="model.name" name="eventName"
+                   required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Type of Event</ion-label>
+        <ion-input type="text" disable-keyboard-auto-words [(ngModel)]="model.type" name="type"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Location<span></span></ion-label>
+        <ion-input type="text" disable-keyboard-auto-words [(ngModel)]="model.location" name="location"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Date</ion-label>
+        <ion-datetime name="date" displayFormat="DDD DD MMM YYYY" pickerFormat="YYYY-MMM-DD DDD" [min]="startDateMin"
+                      [(ngModel)]="startDateDatePart" required></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Time</ion-label>
+        <ion-datetime name="date" displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="startDateTimePart"
+                      required></ion-datetime>
+      </ion-item>
+
+      <ion-item *ngIf="editMode==='Update' && this.updatingModelType()==='Schedule' || editMode!=='Update'">
+        <ion-label floating>Repeat</ion-label>
+        <ion-select [(ngModel)]="model.repeat" name="repeat" required>
+          <ion-option *ngIf="editMode==='New'" value="No">No</ion-option>
+          <ion-option value="Weekly">Week</ion-option>
+          <ion-option value="Daily">Day</ion-option>
+          <ion-option value="Monthly">Month</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item
+        *ngIf="(editMode==='Update' && this.updatingModelType()==='Schedule' || editMode!=='Update') && model.repeat!=='No'">
+        <ion-label floating>Stop Repeating</ion-label>
+        <ion-datetime name="stopRepeatingDate" displayFormat="DDD DD MMM YYYY" pickerFormat="YYYY-MMM-DD DDD"
+                      [min]="stopDateMin" [max]="stopDateMax" [(ngModel)]="stopDateDatePart"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Note</ion-label>
+        <ion-input disable-keyboard-auto-words type="text" [(ngModel)]="model.note" name="note"></ion-input>
+      </ion-item>
+
+      <br/>
+
+      <button ion-button round class="submit-btn" full type="submit" [disabled]="!createEventForm.form.valid">
+        {{buttonTitle}}
+      </button>
+
+      <br/>
+
+    </form>
+  </div>
+
+</ion-content>
